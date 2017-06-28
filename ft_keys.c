@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_keys.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maksenov <maksenov@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/08 17:35:43 by maksenov          #+#    #+#             */
+/*   Updated: 2017/06/08 17:35:44 by maksenov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-void		add_keys(t_key **key, char c)
+void				add_keys(t_key **key, char c)
 {
-	t_key	*tmp;
-	t_key	*p;
+	t_key			*tmp;
+	t_key			*p;
 
 	p = (t_key *)malloc(sizeof(t_key));
 	p->s = c;
@@ -19,33 +31,74 @@ void		add_keys(t_key **key, char c)
 	}
 }
 
-void		check_keys(char *str, t_key **key)
+char				*get_string(DIR *dir, char **a, int i, char *path)
 {
-	while (*str)
+	struct dirent	*entry;
+
+	while ((entry = readdir(dir)) != NULL)
 	{
-		*str == '-' ? str++ : 0;
-		if (*str != 'l' && *str != 'R' && *str != 'a' && *str != 'r' && *str != 't')
-			error_option(*str);
-		add_keys(key, *str);
-		str++;
+		if (!ft_strcmp(entry->d_name, a[i]))
+		{
+			path = ft_strjoin(path, "/");
+			path = ft_strjoin(path, entry->d_name);
+			break ;
+		}
 	}
+	return (path);
 }
 
-void		add_path(char *str, t_path **path)
+int					check_file(char *str, DIR *dir, t_path **path_f)
 {
-	t_path	*tmp;
-	t_path	*p;
-	DIR		*dir;
+	char			**a;
+	int				i;
+	struct stat		buff;
+	char 			*path;
+	struct dirent	*entry;
+
+	i = 0;
+	a = ft_strsplit(str, '/');
+	path = (a[1] == NULL ? "./" : "");
+	while (a[i] && a[i + 1])
+	{
+		path = ft_strjoin(ft_strjoin(path, "/"), a[i]);
+		dir = opendir(path);
+		while ((entry = readdir(dir)) != NULL)
+			if (!ft_strcmp(entry->d_name, a[i + 1]))
+				break ;
+		if (ft_strcmp(entry->d_name, a[i + 1]))
+			return (0);
+		if (a[i + 2] == NULL)
+		{
+			lstat(ft_strjoin(ft_strjoin(path, "/"), a[i + 1]), &buff);
+			if (S_ISDIR(buff.st_mode) == 0)
+			{
+				(*path_f)->str = ft_strdup(path);
+				(*path_f)->file = ft_strdup(a[i + 1]);
+				return (1);
+			}
+		}
+		closedir(dir);
+		i++;
+	}
+	return (0);
+}
+
+void				add_path(char *str, t_path **path)
+{
+	t_path			*tmp;
+	t_path			*p;
+	DIR				*dir;
 
 	p = (t_path *)malloc(sizeof(t_path));
 	p->str = ft_strdup(str);
 	p->next = NULL;
 	if ((dir = opendir(str)) == NULL)
-	{
-		perror(str);
-		return ;
-	}
-	closedir(dir);
+		if (check_file(str, NULL, &p) == 0)
+		{
+			ft_printf("ft_ls: %s: No such file or directory\n", str);
+			return ;
+		}
+	dir == NULL ? 0 : closedir(dir);
 	if (*path == NULL)
 		*path = p;
 	else
@@ -57,21 +110,20 @@ void		add_path(char *str, t_path **path)
 	}
 }
 
-void		ft_keys(char **av, t_key **key, t_path **path, int *len)
+void				ft_keys(char **av, t_key **key, t_path **path, int *len)
 {
-	int 	i;
+	int				i;
 
 	i = 1;
 	*len = 0;
-	*path = NULL;
-	while (av[i] != NULL && *av[i] == '-')
+	while (av[i] != NULL && *av[i] == '-' && av[i][1] != '\0')
 		check_keys(av[i++], key);
 	while (av[i] != NULL)
 	{
 		add_path(av[i++], path);
 		(*len)++;
 	}
-	if (*path == NULL)
+	if (*path == NULL && *len == 0)
 	{
 		add_path(".", path);
 		(*len)++;

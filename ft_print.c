@@ -1,74 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maksenov <maksenov@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/08 17:44:06 by maksenov          #+#    #+#             */
+/*   Updated: 2017/06/08 17:44:07 by maksenov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-int			find_a(t_key *key)
-{
-	while (key != NULL)
-	{
-		if (key->s == 'a')
-			return (1);
-		key = key->next;
-	}
-	return (0);
-}
-
-int			find_r(t_key *key)
-{
-	while (key != NULL)
-	{
-		if (key->s == 'r')
-			return (1);
-		key = key->next;
-	}
-	return (0);
-}
-
-void		find_last(t_name *name, t_name **tmp, int i)
-{
-	while (i-- > 1)
-		name = name->next;
-	*tmp = name;
-	(*tmp)->next = NULL;
-}
-
-int 		len_name(t_name *name)
+void		max_len_size(int *max, t_name *name, int flag)
 {
 	int		i;
 
-	i = 0;
 	while (name != NULL)
 	{
-		i++;
+		i = (int)ft_strlen(ft_itoa_base((size_t)(flag == 1 ?
+			name->size : name->link), 'i'));
+		if (*max < i)
+			*max = i;
 		name = name->next;
 	}
-	return (i);
 }
 
-void		ft_print(t_ls *ls, int l, t_key *key)
+void		max_len_str(int *max, t_name *name, int flag)
 {
-	int 	a;
-	int 	r;
-	int 	i;
+	int		i;
+
+	while (name != NULL)
+	{
+		i = (int)ft_strlen(flag == 1 ? name->name_gr : name->name_pw);
+		if (*max < i)
+			*max = i;
+		name = name->next;
+	}
+}
+
+void		ft_print_ls_1(t_ls *ls, t_name *tmp)
+{
+	ft_printf("%c%s %*i %-*s  %-*s  %*i %s %2i %02i:%02i %s", tmp->tipe,
+	tmp->mode, ls->max_link, tmp->link, ls->max_name_pw, tmp->name_pw,
+	ls->max_name_gr, tmp->name_gr, ls->max_size, (int)tmp->size, tmp->time,
+	tmp->time1.day, tmp->time1.hour, tmp->time1.minute, tmp->str);
+	if (ls->names->tipe == 'l')
+		ft_printf(" -> %s\n", ls->names->target);
+	else
+		ft_printf("\n");
+}
+
+void		ft_print_ls(t_ls *ls, int l, t_key *key)
+{
+	int		a;
 	t_name	*tmp;
 
-	i = len_name(ls->names);
-	r = (find_r(key) == 1 ? 1 : 0);
+	max_len_str(&ls->max_name_gr, ls->names, 1);
+	max_len_str(&ls->max_name_pw, ls->names, 2);
+	max_len_size(&ls->max_size, ls->names, 1);
+	max_len_size(&ls->max_link, ls->names, 2);
 	a = (find_a(key) == 1 ? 1 : 0);
-	while (ls->names != NULL && i >= 0)
+	while (ls->names != NULL)
 	{
-		if (r == 1)
-			find_last(ls->names, &tmp, i);
-		else
-			tmp = ls->names;
+		tmp = ls->names;
 		if ((*tmp->str == '.' && a == 1) || *tmp->str != '.')
 		{
 			if (l == 0)
-				printf("%s\n", tmp->str);
+				ft_printf("%s\n", tmp->str);
 			else
-				printf("%c%s %2i %s  %s%8i %s %2i %i:%02i %s %i\n", tmp->tipe, tmp->mode, tmp->link, tmp->name_pw, tmp->name_gr, (int)tmp->size, tmp->time, tmp->time1.day, tmp->time1.hour, tmp->time1.minute, tmp->str, tmp->time1.sec);
+				ft_print_ls_1(ls, tmp);
 		}
-		r == 0 ? ls->names = ls->names->next : 0;
-		i--;
+		ls->names = ls->names->next;
 	}
-	printf("\n");
 }
-

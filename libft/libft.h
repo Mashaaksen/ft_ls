@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include "get_next_line.h"
+# include <stdarg.h>
+# include <stdint.h>
 
 typedef	struct		s_list
 {
@@ -23,6 +26,24 @@ typedef	struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_print
+{
+	int				mynus;
+	int				plus;
+	int				null;
+	int				space;
+	int				hash;
+	int				weidth;
+	int				accuracy;
+	char			*size;
+	int				proc;
+	char			type;
+	int				cost;
+	char			*p;
+	int				fm;
+	void			*i;
+}					t_print;
 
 int					ft_count_words(char const *s, char c);
 int					ft_isalpha(int c);
@@ -59,7 +80,6 @@ void				ft_putstr(char const *str);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
 void				*ft_memalloc(size_t size);
-char				*ft_itoa(int n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_strdel(char **as);
@@ -83,4 +103,30 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+char				*ft_itoa_base(unsigned long long value, char c);
+t_print				*check_accuracy(const char **str,
+									   va_list ap, t_print *print);
+int					ft_printf(const char *format, ...);
+int					fill(const char *str, t_print *print, va_list ap);
+t_print				*check_width(const char **str,
+									va_list ap, t_print *print);
+t_print				*check_flag(const char **str, t_print *print);
+t_print				*check_size(const char **str, t_print *print);
+int					find_spec(char *str);
+t_print				*check_type(const char **str, t_print *print);
+void				full(t_print **print);
+int					ft_print(t_print *print, va_list ap);
+char				*ft_itoa_long(long long n);
+t_print				*change(t_print *print);
+int					check_all(t_print *print, char **str);
+char				*proc(const char *str, t_print *print,
+						  va_list ap, int *ret);
+char				*accuracy(t_print *print, char *str);
+char				*flag_weidth(t_print *print, char *str);
+char				*find_str(t_print *print, va_list ap);
+long long			ft_int_min(long long n);
+int					ft_len_int(long long n);
+char				*ft_wchar(wchar_t *str, t_print *print);
+t_print				*my_print(t_print *print, char *str);
+
 #endif

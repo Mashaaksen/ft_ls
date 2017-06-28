@@ -19,7 +19,6 @@ FLAG = -Wall -Wextra -Werror
 SRC = ft_count_words.c \
 		ft_strstr.c \
 		ft_strdel.c \
-		ft_lstadd.c \
 		ft_strmap.c \
 		ft_strlen.c \
 		ft_memccpy.c \
@@ -39,7 +38,6 @@ SRC = ft_count_words.c \
 		ft_strnequ.c \
 		ft_striter.c \
 		ft_memchr.c \
-		ft_lstdelone.c \
 		ft_memcpy.c \
 		ft_bzero.c \
 		ft_isdigit.c \
@@ -49,20 +47,15 @@ SRC = ft_count_words.c \
 		ft_strjoin.c \
 		ft_strcmp.c \
 		ft_strcpy.c \
-		ft_lstnew.c \
 		ft_putnbr.c \
 		ft_strncat.c \
 		ft_isascii.c \
-		ft_itoa.c \
-		ft_lstmap.c \
 		ft_putstr.c \
 		ft_strlcat.c \
 		ft_putnbr_fd.c \
 		ft_strsplit.c \
-		ft_lstiter.c \
 		ft_strcat.c \
 		ft_putendl_fd.c \
-		ft_lstdel.c \
 		ft_striteri.c \
 		ft_strnew.c \
 		ft_isprint.c \
@@ -74,32 +67,52 @@ SRC = ft_count_words.c \
 		ft_toupper.c \
 		ft_putstr_fd.c \
 		ft_strrchr.c \
-		ft_strmapi.c
+		ft_strmapi.c \
+		get_next_line.c \
+        ft_lstadd.c \
+        ft_lstdel.c \
+        ft_lstdelone.c \
+        ft_lstiter.c \
+        ft_lstmap.c \
+        ft_lstnew.c \
+        ft_itoa_base.c \
+        accuracy.c \
+        change.c \
+        check.c \
+        check_accuracy.c \
+        check_flags.c \
+        check_size.c \
+        check_width.c \
+        find.c \
+        flags.c \
+        ft_print.c \
+        ft_printf.c \
+        long.c \
+        proc.c \
+        wchar.c
 
 HDR = libft.h
 
 OBJ = $(SRC:.c=.o)
 
-DEL = rm -f
+DEL = rm -rf
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-		ar -cru $(NAME) $(OBJ)
-		ranlib $(NAME)
+		@ar -cru $(NAME) $(OBJ)
+		@ranlib $(NAME)
 
 %.o: %.c libft.h
-		$(G) $(FLAG) -c -o $@ $<
+		@$(G) $(FLAG) -c -o $@ $<
 
 clean:
-		$(DEL) $(OBJ)
+		@$(DEL) $(OBJ)
 
 fclean: clean
-		$(DEL) $(NAME)
+		@$(DEL) $(NAME)
 
-re: all
-	make
-
+re: fclean all
 
 
 
