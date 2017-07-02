@@ -31,22 +31,6 @@ void				add_keys(t_key **key, char c)
 	}
 }
 
-char				*get_string(DIR *dir, char **a, int i, char *path)
-{
-	struct dirent	*entry;
-
-	while ((entry = readdir(dir)) != NULL)
-	{
-		if (!ft_strcmp(entry->d_name, a[i]))
-		{
-			path = ft_strjoin(path, "/");
-			path = ft_strjoin(path, entry->d_name);
-			break ;
-		}
-	}
-	return (path);
-}
-
 int					check_file(char *str, DIR *dir, t_path **path_f)
 {
 	char			**a;
@@ -57,25 +41,27 @@ int					check_file(char *str, DIR *dir, t_path **path_f)
 
 	i = 0;
 	a = ft_strsplit(str, '/');
-	path = (a[1] == NULL ? "./" : "");
+	path = (*str == '/' ? "../" : "");
 	while (a[i] && a[i + 1])
 	{
-		path = ft_strjoin(ft_strjoin(path, "/"), a[i]);
+		path = ft_strjoin(ft_strjoin(path, a[i]), "/");
 		dir = opendir(path);
 		while ((entry = readdir(dir)) != NULL)
 			if (!ft_strcmp(entry->d_name, a[i + 1]))
 				break ;
-		if (ft_strcmp(entry->d_name, a[i + 1]))
+		if (entry == NULL || ft_strcmp(entry->d_name, a[i + 1]))
 			return (0);
 		if (a[i + 2] == NULL)
 		{
 			lstat(ft_strjoin(ft_strjoin(path, "/"), a[i + 1]), &buff);
 			if (S_ISDIR(buff.st_mode) == 0)
 			{
+				if (path[0] == '.' && path[1] == '.')
+					path += 2;
 				(*path_f)->str = ft_strdup(path);
 				(*path_f)->file = ft_strdup(a[i + 1]);
-				return (1);
 			}
+			return (1);
 		}
 		closedir(dir);
 		i++;
