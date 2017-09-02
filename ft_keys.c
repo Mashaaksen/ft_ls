@@ -31,69 +31,94 @@ void				add_keys(t_key **key, char c)
 	}
 }
 
-int					check_file(char *str, DIR *dir, t_path **path_f)
+int 				get_true_path(char *str, t_path **tmp, int new)
 {
-	char			**a;
-	int				i;
-	struct stat		buff;
-	char 			*path;
-	struct dirent	*entry;
+	t_dir			dir;
+	char 			**way;
+	int 			i;
+	int 			flag;
 
 	i = 0;
-	a = ft_strsplit(str, '/');
-	path = (*str == '/' ? "../" : "");
-	while (a[i] && a[i + 1])
+	flag = 0;
+	way = ft_strsplit(str, '/');
+	*tmp = (t_path *)malloc(sizeof(t_path));
+	(*tmp)->next = NULL;
+	(*tmp)->name_file = NULL;
+	(*tmp)->road = (!new ? way[0] : str);
+	if (!new)
 	{
-		path = ft_strjoin(ft_strjoin(path, a[i]), "/");
-		dir = opendir(path);
-		while ((entry = readdir(dir)) != NULL)
-			if (!ft_strcmp(entry->d_name, a[i + 1]))
-				break ;
-		if (entry == NULL || ft_strcmp(entry->d_name, a[i + 1]))
-			return (0);
-		if (a[i + 2] == NULL)
+		while (way[i] && way[i + 1])
 		{
-			lstat(ft_strjoin(ft_strjoin(path, "/"), a[i + 1]), &buff);
-			if (S_ISDIR(buff.st_mode) == 0)
-			{
-				if (path[0] == '.' && path[1] == '.')
-					path += 2;
-				(*path_f)->str = ft_strdup(path);
-				(*path_f)->file = ft_strdup(a[i + 1]);
-			}
-			return (1);
+			flag = 0;
+			dir.dir = opendir((*tmp)->road);
+			if (dir.dir == NULL)
+				return (-1);
+			while ((dir.entry = readdir(dir.dir)))
+				if (!ft_strcmp(dir.entry->d_name, way[i + 1]))
+				{
+					flag++;
+					lstat(ft_strjoin(ft_strjoin((*tmp)->road, "/"), way[i + 1]), &dir.buff);
+					if (!S_ISDIR(dir.buff.st_mode))
+						(*tmp)->name_file = way[i + 1];
+					else
+						(*tmp)->road = ft_strjoin(ft_strjoin((*tmp)->road, "/"), way[i + 1]);
+					break;
+				}
+			closedir(dir.dir);
+			if (flag == 0)
+				return (-1);
+			i++;
 		}
-		closedir(dir);
-		i++;
+		if (!way[1])
+		{
+			dir.dir = opendir(str);
+			if (!dir.dir)
+			{
+				dir.dir = opendir("./");
+				while ((dir.entry = readdir(dir.dir)))
+					if (!ft_strcmp(dir.entry->d_name, way[0]))
+					{
+						flag++;
+						lstat(ft_strjoin(ft_strjoin((*tmp)->road, "/"), way[0]), &dir.buff);
+						if (!S_ISDIR(dir.buff.st_mode))
+						{
+							(*tmp)->name_file = way[0];
+							(*tmp)->road = "./";
+						}
+						else
+							(*tmp)->road = ft_strjoin(ft_strjoin((*tmp)->road, "/"), way[i + 1]);
+						break;
+					}
+				closedir(dir.dir);
+				return (flag ? 0 : -1);
+			}
+			(*tmp)->road = ft_strjoin((*tmp)->road, "/");
+			closedir(dir.dir);
+		}
 	}
 	return (0);
 }
 
-void				add_path(char *str, t_path **path)
+int 				add_path(char *str, t_path **path, int flag)
 {
 	t_path			*tmp;
-	t_path			*p;
-	DIR				*dir;
+	t_path			*head;
 
-	p = (t_path *)malloc(sizeof(t_path));
-	p->str = ft_strdup(str);
-	p->next = NULL;
-	if ((dir = opendir(str)) == NULL)
-		if (check_file(str, NULL, &p) == 0)
-		{
-			ft_printf("ft_ls: %s: No such file or directory\n", str);
-			return ;
-		}
-	dir == NULL ? 0 : closedir(dir);
+	if (ft_strcmp(str, "/") && get_true_path(str, &tmp, flag) == -1)
+		return (-1);
+	else if (!ft_strcmp(str, "/"))
+		get_true_path(str, &tmp, 1);
 	if (*path == NULL)
-		*path = p;
+		*path = tmp;
 	else
 	{
-		tmp = *path;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = p;
+		head = *path;
+		while ((*path)->next != NULL)
+			*path = (*path)->next;
+		(*path)->next = tmp;
+		*path = head;
 	}
+	return (0);
 }
 
 void				ft_keys(char **av, t_key **key, t_path **path, int *len)
@@ -106,12 +131,13 @@ void				ft_keys(char **av, t_key **key, t_path **path, int *len)
 		check_keys(av[i++], key);
 	while (av[i] != NULL)
 	{
-		add_path(av[i++], path);
+		if (add_path(av[i++], path, 0) == -1)
+			ft_printf("ft_ls: %s: No such file or directory\n", av[i - 1]);
 		(*len)++;
 	}
 	if (*path == NULL && *len == 0)
 	{
-		add_path(".", path);
+		add_path(".", path, 1);
 		(*len)++;
 	}
 }

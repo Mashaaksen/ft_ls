@@ -45,36 +45,35 @@ int			find_recursion(t_key *key)
 	return (0);
 }
 
-void		open_read_dir(char *str, t_ls *ls, int *tab, char *file)
+int			open_read_dir(t_ls **ls, t_path *path)
 {
-	ls->dir = opendir(str);
-	if (file == NULL)
-		while ((ls->entry = readdir(ls->dir)) != NULL)
-		{
-			if (lstat(ft_strjoin(str, ls->entry->d_name), &ls->buff) == 0)
-			{
-				ls->str = ft_strjoin(str, ls->entry->d_name);
-				ft_name(&ls->names, ls);
-				if (*(ls->entry->d_name) != '.' || tab[1] == 1)
-					tab[2] += ls->buff.st_blocks;
+	(*ls)->dir.dir = opendir(path->road);
+	if (!(*ls)->dir.dir)
+		return (1);
+	while (((*ls)->dir.entry = readdir((*ls)->dir.dir)))
+	{
+		if (path->name_file && ft_strcmp((*ls)->dir.entry->d_name, path->name_file))
+			continue ;
+		else if (path->name_file) {
+			if (!lstat(ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name), &(*ls)->buff)) {
+				(*ls)->str = ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name);
+				ft_name(&(*ls)->names, ls);
+				break;
 			}
 		}
-	else
-	{
-		while ((ls->entry = readdir(ls->dir)) != NULL)
-			if (!ft_strcmp(ls->entry->d_name, file))
-			{
-				if (lstat(ft_strjoin(str, ls->entry->d_name), &ls->buff) == 0)
+		else if (!path->name_file)
+		{
+			if (!lstat(ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name), &(*ls)->buff))
 				{
-					ls->str = ft_strjoin(str, ls->entry->d_name);
-					ft_name(&ls->names, ls);
-					if (*(ls->entry->d_name) != '.' || tab[1] == 1)
-						tab[2] += ls->buff.st_blocks;
+					(*ls)->str = ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name);
+					ft_name(&(*ls)->names, ls);
+					if (*((*ls)->dir.entry->d_name) != '.' || (*ls)->dot == 1)
+						(*ls)->total += (*ls)->buff.st_blocks;
 				}
-				break ;
-			}
+		}
 	}
-	closedir(ls->dir);
+	closedir((*ls)->dir.dir);
+	return (0);
 }
 
 int			main(int ac, char **av)

@@ -60,7 +60,7 @@ void		ft_find_time(t_name **p, t_ls *ls)
 void		fill_p(t_ls *ls, t_name **p)
 {
 	(*p) = (t_name *)malloc(sizeof(t_name));
-	(*p)->str = ft_strdup(ls->entry->d_name);
+	(*p)->str = ft_strdup(ls->dir.entry->d_name);
 	ls->uid = getpwuid(ls->buff.st_uid);
 	ls->gid = getgrgid(ls->buff.st_gid);
 	(*p)->name_pw = ft_strdup(ls->uid->pw_name);
@@ -92,14 +92,14 @@ void		print_ls_link(t_ls *ls, t_name *p, char *link_name, ssize_t k)
 	}
 }
 
-void		ft_name(t_name **names, t_ls *ls)
+void		ft_name(t_name **names, t_ls **ls)
 {
 	t_name	*tmp;
 	t_name	*p;
 	char	link_name[PATH_LEN];
 
-	fill_p(ls, &p);
-	print_ls_link(ls, p, link_name, 0);
+	fill_p(*ls, &p);
+	print_ls_link(*ls, p, link_name, 0);
 	p->next = NULL;
 	if (*names == NULL)
 		*names = p;

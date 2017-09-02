@@ -56,18 +56,28 @@ typedef struct		s_name
 	struct s_name	*next;
 }					t_name;
 
+typedef struct		s_dir
+{
+	DIR				*dir;
+	struct stat		buff;
+	struct dirent	*entry;
+}					t_dir;
+
 typedef struct		s_path
 {
-	char			*str;
-	char 			*file;
+	char			*road;
+	char 			*name_file;
 	struct s_path	*next;
 }					t_path;
 
 typedef struct		s_ls
 {
-	char			*str;
-	DIR				*dir;
-	struct dirent	*entry;
+	char 			*str;
+	t_dir			dir;
+	int 			dot;
+	int 			rev;
+	int 			total;
+	int 			inscr;
 	t_name			*names;
 	struct stat		buff;
 	struct passwd	*uid;
@@ -79,17 +89,17 @@ typedef struct		s_ls
 }					t_ls;
 
 void				ft_keys(char **av, t_key **key, t_path **path, int *len);
-void				ft_name(t_name **names, t_ls *ls);
+void				ft_name(t_name **names, t_ls **ls);
 void				ft_alpha_sort(t_name **name, int flag);
 void				error_option(char c);
 void				ordinary(t_key *key, t_path *path, int flag, int rec);
 void				ft_time_sort(t_name **name, int flag);
 void				ft_print_ls(t_ls *ls, int i, t_key *key);
 int					find_a(t_key *key);
-void				add_path(char *str, t_path **path);
+int					add_path(char *str, t_path **path, int flag);
 int					find_r(t_key *key);
 void				rostring(t_name **name);
-void				open_read_dir(char *str, t_ls *ls, int *tab, char *file);
+int					open_read_dir(t_ls **ls, t_path *path);
 int					find_time(t_key *key);
 int					find_l(t_key *key);
 void				find_tipe(char *p, mode_t mode);

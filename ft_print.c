@@ -64,6 +64,8 @@ void		ft_print_ls(t_ls *ls, int l, t_key *key)
 	while (ls->names != NULL)
 	{
 		tmp = ls->names;
+		if (tmp->str[0] == '.' && tmp->str[1] == '/')
+			tmp->str += 2;
 		if ((*tmp->str == '.' && a == 1) || *tmp->str != '.')
 		{
 			if (l == 0)

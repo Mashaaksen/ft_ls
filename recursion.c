@@ -23,7 +23,7 @@ void		find_mode(char **str, mode_t mode)
 	*str = ft_strjoin(*str, (mode & S_IXGRP) ? "x" : "-");
 	*str = ft_strjoin(*str, (mode & S_IROTH) ? "r" : "-");
 	*str = ft_strjoin(*str, (mode & S_IWOTH) ? "w" : "-");
-	*str = ft_strjoin(*str, (mode & S_ISVTX) ? "t" : "x");
+	*str = ft_strjoin(*str, (mode & S_IXOTH) ? "x" : "-");
 }
 
 void		find_tipe(char *p, mode_t mode)

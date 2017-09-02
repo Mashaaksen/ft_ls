@@ -10,6 +10,9 @@
 #                                                                              #
 #******************************************************************************#
 
+RED = echo "\033[0;31m"
+END = echo "\033[0m"
+
 NAME = libft.a
 
 G = gcc
@@ -107,9 +110,15 @@ $(NAME) : $(OBJ)
 		@$(G) $(FLAG) -c -o $@ $<
 
 clean:
+	@echo "$$($(RED))********************$$($(END))"
+	@echo "$$($(RED))  libft: "DEL *.o"  $$($(END))"
+	@echo "$$($(RED))********************$$($(END))"
 		@$(DEL) $(OBJ)
 
 fclean: clean
+	@echo "$$($(RED))********************$$($(END))"
+	@echo "$$($(RED))libft: "DEL libft.a"$$($(END))"
+	@echo "$$($(RED))********************$$($(END))"
 		@$(DEL) $(NAME)
 
 re: fclean all
