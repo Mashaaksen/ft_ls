@@ -56,7 +56,7 @@ int			open_read_dir(t_ls **ls, t_path *path)
 			continue ;
 		else if (path->name_file) {
 			if (!lstat(ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name), &(*ls)->buff)) {
-				(*ls)->str = ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name);
+				(*ls)->str = path->all_name;
 				ft_name(&(*ls)->names, ls);
 				break;
 			}
@@ -65,7 +65,7 @@ int			open_read_dir(t_ls **ls, t_path *path)
 		{
 			if (!lstat(ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name), &(*ls)->buff))
 				{
-					(*ls)->str = ft_strjoin(ft_strjoin(path->road, "/"), (*ls)->dir.entry->d_name);
+					(*ls)->str = path->all_name;
 					ft_name(&(*ls)->names, ls);
 					if (*((*ls)->dir.entry->d_name) != '.' || (*ls)->dot == 1)
 						(*ls)->total += (*ls)->buff.st_blocks;

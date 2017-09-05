@@ -51,7 +51,7 @@ void		ft_print_ls_1(t_ls *ls, t_name *tmp)
 		ft_printf("\n");
 }
 
-void		ft_print_ls(t_ls *ls, int l, t_key *key)
+void		ft_print_ls(t_ls *ls, int l, t_key *key, int file)
 {
 	int		a;
 	t_name	*tmp;
@@ -64,11 +64,11 @@ void		ft_print_ls(t_ls *ls, int l, t_key *key)
 	while (ls->names != NULL)
 	{
 		tmp = ls->names;
-		if (tmp->str[0] == '.' && tmp->str[1] == '/')
-			tmp->str += 2;
 		if ((*tmp->str == '.' && a == 1) || *tmp->str != '.')
 		{
-			if (l == 0)
+			if (file == 1 && l == 0)
+				ft_printf("%s\n", ls->str);
+			else if (l == 0)
 				ft_printf("%s\n", tmp->str);
 			else
 				ft_print_ls_1(ls, tmp);

@@ -41,7 +41,7 @@ int			ft_check(t_path *path, int rec, int len)
 	int		flag;
 
 	flag = 0;
-	if (path != NULL && !path->name_file)
+	if (path != NULL)
 	{
 		flag = (path->next == NULL && rec == 0) ? 0 : 1;
 		flag == 0 && len > 1 ? flag = 1 : 0;
@@ -68,8 +68,8 @@ void		ordinary(t_key *key, t_path *path, int len, int rec)
 	ls->inscr = ft_check(path, rec, len);
 	while (path != NULL && (tmp = NULL) == NULL)
 	{
-		if (ls->inscr == 1 && ft_strcmp(path->road, "."))
-			ft_printf("\n%s:\n", path->road);
+		if (ls->inscr == 1 && !path->name_file)
+			ft_printf("\n%s:\n", path->all_name);
 		ls->total = 0;
 		if (!open_read_dir(&ls, path))
 		{
@@ -78,7 +78,7 @@ void		ordinary(t_key *key, t_path *path, int len, int rec)
 			rec == 1 && !path->name_file ? create_tmp(&tmp, path->road, ls->names, ls->dot) : 0;
 			(find_l(key) == 1 && !path->name_file) ?
 			ft_printf("total %i\n", ls->total) : 0;
-			ft_print_ls(ls, find_l(key) == 1 ? 1 : 0, key);
+			ft_print_ls(ls, find_l(key) == 1 ? 1 : 0, key, path->name_file ? 1 : 0);
 			(rec == 1 && tmp != NULL) ? ordinary(key, tmp, 0, rec) : 0;
 		}
 		path = path->next;

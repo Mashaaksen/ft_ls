@@ -44,6 +44,7 @@ int 				get_true_path(char *str, t_path **tmp, int new)
 	*tmp = (t_path *)malloc(sizeof(t_path));
 	(*tmp)->next = NULL;
 	(*tmp)->name_file = NULL;
+	(*tmp)->all_name = str;
 	(*tmp)->road = (!new ? way[0] : str);
 	if (!new)
 	{
@@ -121,6 +122,60 @@ int 				add_path(char *str, t_path **path, int flag)
 	return (0);
 }
 
+int 				check_return(t_path *path)
+{
+	int 			flag;
+
+	flag = 0;
+	while (path)
+	{
+		if (path->name_file && flag)
+			return (1);
+		if (!path->name_file)
+			flag++;
+		path = path->next;
+	}
+	return (0);
+}
+
+void 				return_right_path(t_path **path)
+{
+	t_path			*tmp;
+	t_path			*p;
+	t_path			*new;
+	int 			flag;
+
+	while (check_return(*path))
+	{
+		new = *path;
+		tmp = *path;
+		p = (*path)->next;
+		flag = -1;
+		while (tmp && p)
+		{
+			if (!tmp->name_file && p->name_file && (!flag || flag == -1))
+			{
+				new->next = p;
+				tmp->next = p->next;
+				p->next = tmp;
+				flag = 1;
+			}
+			else if (tmp->name_file && !p->name_file && flag == 1)
+			{
+				new->next = tmp;
+				p->next = tmp->next;
+				tmp->next = p;
+				flag = 0;
+			}
+			if (flag != -1)
+				new = new->next;
+			flag == -1 ? flag++ : 0;
+			p = p->next;
+			tmp = tmp->next;
+		}
+	}
+}
+
 void				ft_keys(char **av, t_key **key, t_path **path, int *len)
 {
 	int				i;
@@ -140,4 +195,6 @@ void				ft_keys(char **av, t_key **key, t_path **path, int *len)
 		add_path(".", path, 1);
 		(*len)++;
 	}
+	if (*path)
+		return_right_path(path);
 }

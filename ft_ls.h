@@ -67,6 +67,7 @@ typedef struct		s_path
 {
 	char			*road;
 	char 			*name_file;
+	char 			*all_name;
 	struct s_path	*next;
 }					t_path;
 
@@ -94,7 +95,7 @@ void				ft_alpha_sort(t_name **name, int flag);
 void				error_option(char c);
 void				ordinary(t_key *key, t_path *path, int flag, int rec);
 void				ft_time_sort(t_name **name, int flag);
-void				ft_print_ls(t_ls *ls, int i, t_key *key);
+void				ft_print_ls(t_ls *ls, int i, t_key *key, int file);
 int					find_a(t_key *key);
 int					add_path(char *str, t_path **path, int flag);
 int					find_r(t_key *key);
