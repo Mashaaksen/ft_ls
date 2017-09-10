@@ -25,13 +25,10 @@ char 		**create_2_args(char *av)
 	return (args);
 }
 
-void 		check_right_path(char *av, t_dir *inform)
+void 		check_right_path(char *av, t_dir *inform, t_path **tmp)
 {
 	char **args;
-	struct stat buff;
-	int flag;
 
-	flag = 0;
 	args = create_2_args(av);
 	inform->dir = opendir(args[0]);
 	if (!inform->dir)
@@ -43,11 +40,14 @@ void 		check_right_path(char *av, t_dir *inform)
 		while ((inform->entry = readdir(inform->dir)))
 			if (!ft_strcmp(inform->entry->d_name, args[1]))
 			{
-				lstat(av, &buff);
-				flag = 1;
+				*tmp = (t_path *)malloc(sizeof(t_path));
+				(*tmp)->av = av;
+				(*tmp)->road = args[0];
+				(*tmp)->file = args[1];
+				lstat(av, &(*tmp)->buff);
 				break;
 			}
-	if (!flag)
+	if (!(*tmp))
 	{
 		ft_printf("ft_ls: %s: No such file or directory\n", av);
 		exit(0);
@@ -55,11 +55,24 @@ void 		check_right_path(char *av, t_dir *inform)
 	closedir(inform->dir);
 }
 
+void 		add_and_sort(t_key keys, t_path **path, t_path *tmp)
+{
+	if (keys.key_time == 0)
+	{
+
+	}
+}
+
 void 		find_path(t_ls *ls, char **av)
 {
+	t_path	*tmp;
+
+	ls->path = NULL;
 	while (av)
 	{
-		check_right_path(*av, &ls->inform);
+		tmp = NULL;
+		check_right_path(*av, &ls->inform, &tmp);
+		add_and_sort(ls->keys, &ls->path, tmp);
 		av++;
 	}
 }

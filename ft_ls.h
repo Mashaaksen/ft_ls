@@ -23,8 +23,10 @@ typedef struct 		s_key
 
 typedef struct 		s_path
 {
+	char 			*av;
 	char 			*road;
 	char 			*file;
+	struct stat		buff;
 	struct s_path	*next;
 }					t_path;
 
