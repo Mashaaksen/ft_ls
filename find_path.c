@@ -55,11 +55,42 @@ void 		check_right_path(char *av, t_dir *inform, t_path **tmp)
 	closedir(inform->dir);
 }
 
+int			alpha(char *a, char *b)
+{
+	char	*s1;
+	char	*s2;
+
+	s1 = a;
+	s2 = b;
+	while (*s1 || *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 > *s2 ? 1 : 0);
+		*s1 != '\0' ? s1++ : 0;
+		*s2 != '\0' ? s2++ : 0;
+	}
+	return (0);
+}
+
 void 		add_and_sort(t_key keys, t_path **path, t_path *tmp)
 {
-	if (keys.key_time == 0)
-	{
+	t_path	*head;
 
+	if (*path == NULL)
+		*path = tmp;
+	else
+	{
+		if (keys.key_time == 0)
+		{
+			if (keys.key_rev == 0)
+			{
+				head = *path;
+				while (alpha((*path)->av, tmp->av))
+				{
+
+				}
+			}
+		}
 	}
 }
 
