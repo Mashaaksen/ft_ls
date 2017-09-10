@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/ft_ls
+CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/ls
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/ft_ls/cmake-build-debug
+CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ft_ls/cmake-build-debug/CMakeFiles /nfs/2016/m/maksenov/CLionProjects/ft_ls/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ft_ls/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,206 +111,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ft_ls
+# Target rules for targets named ls
 
 # Build rule for target.
-ft_ls: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ft_ls
-.PHONY : ft_ls
+ls: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ls
+.PHONY : ls
 
 # fast build rule for target.
-ft_ls/fast:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/build
-.PHONY : ft_ls/fast
+ls/fast:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/build
+.PHONY : ls/fast
 
-ela.o: ela.cpp.o
+find_keys.o: find_keys.c.o
 
-.PHONY : ela.o
-
-# target to build an object file
-ela.cpp.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ela.cpp.o
-.PHONY : ela.cpp.o
-
-ela.i: ela.cpp.i
-
-.PHONY : ela.i
-
-# target to preprocess a source file
-ela.cpp.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ela.cpp.i
-.PHONY : ela.cpp.i
-
-ela.s: ela.cpp.s
-
-.PHONY : ela.s
-
-# target to generate assembly for a file
-ela.cpp.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ela.cpp.s
-.PHONY : ela.cpp.s
-
-error.o: error.c.o
-
-.PHONY : error.o
+.PHONY : find_keys.o
 
 # target to build an object file
-error.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/error.c.o
-.PHONY : error.c.o
+find_keys.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.o
+.PHONY : find_keys.c.o
 
-error.i: error.c.i
+find_keys.i: find_keys.c.i
 
-.PHONY : error.i
+.PHONY : find_keys.i
 
 # target to preprocess a source file
-error.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/error.c.i
-.PHONY : error.c.i
+find_keys.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.i
+.PHONY : find_keys.c.i
 
-error.s: error.c.s
+find_keys.s: find_keys.c.s
 
-.PHONY : error.s
+.PHONY : find_keys.s
 
 # target to generate assembly for a file
-error.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/error.c.s
-.PHONY : error.c.s
+find_keys.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.s
+.PHONY : find_keys.c.s
 
-ft_alpha_sort.o: ft_alpha_sort.c.o
+find_path.o: find_path.c.o
 
-.PHONY : ft_alpha_sort.o
+.PHONY : find_path.o
 
 # target to build an object file
-ft_alpha_sort.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_alpha_sort.c.o
-.PHONY : ft_alpha_sort.c.o
+find_path.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.o
+.PHONY : find_path.c.o
 
-ft_alpha_sort.i: ft_alpha_sort.c.i
+find_path.i: find_path.c.i
 
-.PHONY : ft_alpha_sort.i
-
-# target to preprocess a source file
-ft_alpha_sort.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_alpha_sort.c.i
-.PHONY : ft_alpha_sort.c.i
-
-ft_alpha_sort.s: ft_alpha_sort.c.s
-
-.PHONY : ft_alpha_sort.s
-
-# target to generate assembly for a file
-ft_alpha_sort.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_alpha_sort.c.s
-.PHONY : ft_alpha_sort.c.s
-
-ft_fill_name.o: ft_fill_name.c.o
-
-.PHONY : ft_fill_name.o
-
-# target to build an object file
-ft_fill_name.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_fill_name.c.o
-.PHONY : ft_fill_name.c.o
-
-ft_fill_name.i: ft_fill_name.c.i
-
-.PHONY : ft_fill_name.i
+.PHONY : find_path.i
 
 # target to preprocess a source file
-ft_fill_name.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_fill_name.c.i
-.PHONY : ft_fill_name.c.i
+find_path.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.i
+.PHONY : find_path.c.i
 
-ft_fill_name.s: ft_fill_name.c.s
+find_path.s: find_path.c.s
 
-.PHONY : ft_fill_name.s
-
-# target to generate assembly for a file
-ft_fill_name.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_fill_name.c.s
-.PHONY : ft_fill_name.c.s
-
-ft_keys.o: ft_keys.c.o
-
-.PHONY : ft_keys.o
-
-# target to build an object file
-ft_keys.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_keys.c.o
-.PHONY : ft_keys.c.o
-
-ft_keys.i: ft_keys.c.i
-
-.PHONY : ft_keys.i
-
-# target to preprocess a source file
-ft_keys.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_keys.c.i
-.PHONY : ft_keys.c.i
-
-ft_keys.s: ft_keys.c.s
-
-.PHONY : ft_keys.s
+.PHONY : find_path.s
 
 # target to generate assembly for a file
-ft_keys.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_keys.c.s
-.PHONY : ft_keys.c.s
-
-ft_print.o: ft_print.c.o
-
-.PHONY : ft_print.o
-
-# target to build an object file
-ft_print.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_print.c.o
-.PHONY : ft_print.c.o
-
-ft_print.i: ft_print.c.i
-
-.PHONY : ft_print.i
-
-# target to preprocess a source file
-ft_print.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_print.c.i
-.PHONY : ft_print.c.i
-
-ft_print.s: ft_print.c.s
-
-.PHONY : ft_print.s
-
-# target to generate assembly for a file
-ft_print.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_print.c.s
-.PHONY : ft_print.c.s
-
-ft_time_sort.o: ft_time_sort.c.o
-
-.PHONY : ft_time_sort.o
-
-# target to build an object file
-ft_time_sort.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_time_sort.c.o
-.PHONY : ft_time_sort.c.o
-
-ft_time_sort.i: ft_time_sort.c.i
-
-.PHONY : ft_time_sort.i
-
-# target to preprocess a source file
-ft_time_sort.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_time_sort.c.i
-.PHONY : ft_time_sort.c.i
-
-ft_time_sort.s: ft_time_sort.c.s
-
-.PHONY : ft_time_sort.s
-
-# target to generate assembly for a file
-ft_time_sort.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ft_time_sort.c.s
-.PHONY : ft_time_sort.c.s
+find_path.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.s
+.PHONY : find_path.c.s
 
 main.o: main.c.o
 
@@ -318,7 +183,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/main.c.o
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -327,7 +192,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/main.c.i
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -336,62 +201,8 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/main.c.s
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.s
 .PHONY : main.c.s
-
-ordinary.o: ordinary.c.o
-
-.PHONY : ordinary.o
-
-# target to build an object file
-ordinary.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ordinary.c.o
-.PHONY : ordinary.c.o
-
-ordinary.i: ordinary.c.i
-
-.PHONY : ordinary.i
-
-# target to preprocess a source file
-ordinary.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ordinary.c.i
-.PHONY : ordinary.c.i
-
-ordinary.s: ordinary.c.s
-
-.PHONY : ordinary.s
-
-# target to generate assembly for a file
-ordinary.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/ordinary.c.s
-.PHONY : ordinary.c.s
-
-recursion.o: recursion.c.o
-
-.PHONY : recursion.o
-
-# target to build an object file
-recursion.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/recursion.c.o
-.PHONY : recursion.c.o
-
-recursion.i: recursion.c.i
-
-.PHONY : recursion.i
-
-# target to preprocess a source file
-recursion.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/recursion.c.i
-.PHONY : recursion.c.i
-
-recursion.s: recursion.c.s
-
-.PHONY : recursion.s
-
-# target to generate assembly for a file
-recursion.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/recursion.c.s
-.PHONY : recursion.c.s
 
 # Help Target
 help:
@@ -401,37 +212,16 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... ft_ls"
-	@echo "... ela.o"
-	@echo "... ela.i"
-	@echo "... ela.s"
-	@echo "... error.o"
-	@echo "... error.i"
-	@echo "... error.s"
-	@echo "... ft_alpha_sort.o"
-	@echo "... ft_alpha_sort.i"
-	@echo "... ft_alpha_sort.s"
-	@echo "... ft_fill_name.o"
-	@echo "... ft_fill_name.i"
-	@echo "... ft_fill_name.s"
-	@echo "... ft_keys.o"
-	@echo "... ft_keys.i"
-	@echo "... ft_keys.s"
-	@echo "... ft_print.o"
-	@echo "... ft_print.i"
-	@echo "... ft_print.s"
-	@echo "... ft_time_sort.o"
-	@echo "... ft_time_sort.i"
-	@echo "... ft_time_sort.s"
+	@echo "... ls"
+	@echo "... find_keys.o"
+	@echo "... find_keys.i"
+	@echo "... find_keys.s"
+	@echo "... find_path.o"
+	@echo "... find_path.i"
+	@echo "... find_path.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... ordinary.o"
-	@echo "... ordinary.i"
-	@echo "... ordinary.s"
-	@echo "... recursion.o"
-	@echo "... recursion.i"
-	@echo "... recursion.s"
 .PHONY : help
 
 
