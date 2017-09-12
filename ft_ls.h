@@ -12,6 +12,15 @@
 # include <time.h>
 # include <dirent.h>
 
+typedef struct		s_time
+{
+	int				month;
+	int				day;
+	int				hour;
+	int				minute;
+	int				sec;
+}					t_time;
+
 typedef struct 		s_key
 {
 	int 			key_all;
@@ -26,7 +35,9 @@ typedef struct 		s_path
 	char 			*av;
 	char 			*road;
 	char 			*file;
+	t_time			time;
 	struct stat		buff;
+	char 			type;
 	struct s_path	*next;
 }					t_path;
 
