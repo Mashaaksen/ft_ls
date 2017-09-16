@@ -7,4 +7,5 @@ int 		main(int ac, char **av)
 	av++;
 	find_keys(&ls, &av);
 	find_path(&ls, av);
+	ft_ls(ls.path, ls.keys, 0);
 }

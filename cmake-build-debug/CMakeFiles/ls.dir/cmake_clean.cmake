@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ls.dir/main.c.o"
   "CMakeFiles/ls.dir/find_keys.c.o"
   "CMakeFiles/ls.dir/find_path.c.o"
+  "CMakeFiles/ls.dir/ft_ls.c.o"
   "ls.pdb"
   "ls"
 )

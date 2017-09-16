@@ -177,6 +177,33 @@ find_path.c.s:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.s
 .PHONY : find_path.c.s
 
+ft_ls.o: ft_ls.c.o
+
+.PHONY : ft_ls.o
+
+# target to build an object file
+ft_ls.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.o
+.PHONY : ft_ls.c.o
+
+ft_ls.i: ft_ls.c.i
+
+.PHONY : ft_ls.i
+
+# target to preprocess a source file
+ft_ls.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.i
+.PHONY : ft_ls.c.i
+
+ft_ls.s: ft_ls.c.s
+
+.PHONY : ft_ls.s
+
+# target to generate assembly for a file
+ft_ls.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.s
+.PHONY : ft_ls.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... find_path.o"
 	@echo "... find_path.i"
 	@echo "... find_path.s"
+	@echo "... ft_ls.o"
+	@echo "... ft_ls.i"
+	@echo "... ft_ls.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

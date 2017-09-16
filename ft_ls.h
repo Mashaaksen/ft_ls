@@ -14,6 +14,7 @@
 
 typedef struct		s_time
 {
+	char 			*str_month;
 	int				month;
 	int				day;
 	int				hour;
@@ -28,6 +29,8 @@ typedef struct 		s_key
 	int 			key_recurs;
 	int 			key_rev;
 	int 			key_time;
+	int 			file;
+	int 			count;
 }					t_key;
 
 typedef struct 		s_path
@@ -38,6 +41,8 @@ typedef struct 		s_path
 	t_time			time;
 	struct stat		buff;
 	char 			type;
+	struct passwd	*uid;
+	struct group	*gid;
 	struct s_path	*next;
 }					t_path;
 
@@ -56,5 +61,6 @@ typedef	struct 		s_ls
 
 void 		find_keys(t_ls *ls, char ***av);
 void 		find_path(t_ls *ls, char **av);
+void 		ft_ls(t_path *path, t_key keys, int flag);
 
 #endif

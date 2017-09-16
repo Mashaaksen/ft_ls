@@ -7,7 +7,7 @@ include_directories(includes libft) # headers
 
 link_directories(libft) # libraries
 
-set(SOURCE_FILES main.c find_keys.c find_path.c ft_ls.h)
+set(SOURCE_FILES main.c find_keys.c find_path.c ft_ls.h ft_ls.c)
 add_executable(ls ${SOURCE_FILES})
 
 target_link_libraries(ls libft.a) # linkage

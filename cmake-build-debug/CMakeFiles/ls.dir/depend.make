@@ -11,6 +11,11 @@ CMakeFiles/ls.dir/find_path.c.o: ../ft_ls.h
 CMakeFiles/ls.dir/find_path.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/find_path.c.o: ../libft/libft.h
 
+CMakeFiles/ls.dir/ft_ls.c.o: ../ft_ls.c
+CMakeFiles/ls.dir/ft_ls.c.o: ../ft_ls.h
+CMakeFiles/ls.dir/ft_ls.c.o: ../libft/get_next_line.h
+CMakeFiles/ls.dir/ft_ls.c.o: ../libft/libft.h
+
 CMakeFiles/ls.dir/main.c.o: ../ft_ls.h
 CMakeFiles/ls.dir/main.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/main.c.o: ../libft/libft.h

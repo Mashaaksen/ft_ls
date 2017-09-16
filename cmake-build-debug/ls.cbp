@@ -92,6 +92,9 @@
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/find_path.c">
 			<Option target="ls"/>
 		</Unit>
+		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.c">
+			<Option target="ls"/>
+		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h">
 			<Option target="ls"/>
 		</Unit>
