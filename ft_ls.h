@@ -31,6 +31,7 @@ typedef struct 		s_key
 	int 			key_time;
 	int 			file;
 	int 			count;
+	int 			total;
 }					t_key;
 
 typedef struct 		s_path
@@ -62,5 +63,11 @@ typedef	struct 		s_ls
 void 		find_keys(t_ls *ls, char ***av);
 void 		find_path(t_ls *ls, char **av);
 void 		ft_ls(t_path *path, t_key keys, int flag);
+void 		add_and_sort(t_key keys, t_path **path, t_path *tmp);
+int			alpha(char *a, char *b);
+void 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key);
+int			ft_time(t_time a, t_time b);
+void		ft_find_time(t_time *tmp, struct stat buff);
+int			find_month(char *str, int i);
 
 #endif

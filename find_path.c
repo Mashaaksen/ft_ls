@@ -81,9 +81,9 @@ char 		**create_2_args(char *av)
 {
 	char 	**args;
 	char 	**a;
-	int 	i;
+	int 	iter;
 
-	i = 0;
+	iter = 0;
 	args = (char **)malloc(sizeof(char *) * 3);
 	if (!ft_strchr(av, '/'))
 	{
@@ -94,11 +94,16 @@ char 		**create_2_args(char *av)
 	{
 		a = ft_strsplit(av, '/');
 		args[0] = (*av == '/' ? "/" : "");
-		if (*a)
+		if (*a && a[1])
 		{
-			while (a[i] && a[i + 1])
-				args[0] = ft_strjoin(ft_strjoin(args[0], a[i++]), "/");
-			args[1] = ft_strdup(a[i]);
+			while (a[iter] && a[iter + 1])
+				args[0] = ft_strjoin(ft_strjoin(args[0], a[iter++]), "/");
+			args[1] = a[iter];
+		}
+		else if (*a && !a[1])
+		{
+			args[0] = ft_strjoin(a[0], "/");
+			args[1] = NULL;
 		}
 		else
 			args[1] = NULL;
@@ -154,6 +159,7 @@ void 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key)
 		ft_printf("ft_ls: %s: No such file or directory\n", av);
 		exit(0);
 	}
+	(*tmp)->next = NULL;
 	closedir(inform->dir);
 }
 
