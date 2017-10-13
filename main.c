@@ -4,6 +4,7 @@ int 		main(int ac, char **av)
 {
 	t_ls	ls;
 
+	ac = 0;
 	av++;
 	find_keys(&ls, &av);
 	find_path(&ls, av);

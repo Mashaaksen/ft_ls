@@ -35,6 +35,8 @@ void		print_mode(mode_t mode, char **str)
 	*str = ft_strjoin(*str, ((mode & S_IROTH) ? "r" : "-"));
 	*str = ft_strjoin(*str, ((mode & S_IWOTH) ? "w" : "-"));
 	*str = ft_strjoin(*str, ((mode & S_IXOTH) ? "x" : "-"));
+	*str = ft_strjoin(*str, ((mode & S_ISVTX) ? "t" : ""));
+//	*str = ft_strjoin(*str, ((mode & S_ISGID) ? "@" : ""));
 }
 
 void 		print_file(t_path *path,t_key keys)
@@ -212,7 +214,7 @@ void 		print_dir(t_path *path,t_key keys, int flag)
 	{
 		if (path->type == 'd')
 		{
-			if (!path->file || (keys.key_all && *(path->file)  == '.') || *(path->file) != '.')
+			if (!path->file || ((keys.key_all || !flag) && *(path->file)  == '.') || *(path->file) != '.')
 			{
 				keys.total = 0;
 				keys.max_link = 0;
@@ -223,8 +225,7 @@ void 		print_dir(t_path *path,t_key keys, int flag)
 					ft_printf("%s:\n", path->av);
 				read_all(path, &tmp, &keys);
 				print_all(tmp, keys);
-				ft_printf("\n");
-				keys.key_recurs ? ft_ls(tmp, keys, ++flag) : 0;
+				keys.key_recurs ? ft_ls(tmp, keys, flag + 1) : 0;
 				tmp = NULL;
 			}
 		}
