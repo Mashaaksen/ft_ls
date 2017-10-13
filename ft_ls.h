@@ -1,6 +1,8 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# define PATH_LEN 256
+
 # include "libft/libft.h"
 # include <dirent.h>
 # include <sys/stat.h>
@@ -11,6 +13,24 @@
 # include <sys/xattr.h>
 # include <time.h>
 # include <dirent.h>
+
+typedef struct			s_char_list
+{
+	char 				*av;
+	char 				*tipe;
+	char 				*mode;
+	nlink_t				st_nlink;
+	char				*pw_name;
+	char				*gr_name;
+	off_t				st_size;
+	char 				*str_month;
+	int					day;
+	int					hour;
+	int					minute;
+	char 				*file;
+	char 				*target;
+	struct s_char_list	*next;
+}					t_char_list;
 
 typedef struct		s_time
 {
@@ -32,6 +52,10 @@ typedef struct 		s_key
 	int 			file;
 	int 			count;
 	int 			total;
+	int				max_size;
+	int				max_link;
+	int				max_name_gr;
+	int				max_name_pw;
 }					t_key;
 
 typedef struct 		s_path
