@@ -231,6 +231,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.s
 .PHONY : main.c.s
 
+sort_ls.o: sort_ls.c.o
+
+.PHONY : sort_ls.o
+
+# target to build an object file
+sort_ls.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.o
+.PHONY : sort_ls.c.o
+
+sort_ls.i: sort_ls.c.i
+
+.PHONY : sort_ls.i
+
+# target to preprocess a source file
+sort_ls.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.i
+.PHONY : sort_ls.c.i
+
+sort_ls.s: sort_ls.c.s
+
+.PHONY : sort_ls.s
+
+# target to generate assembly for a file
+sort_ls.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.s
+.PHONY : sort_ls.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -252,6 +279,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sort_ls.o"
+	@echo "... sort_ls.i"
+	@echo "... sort_ls.s"
 .PHONY : help
 
 

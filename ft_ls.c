@@ -34,9 +34,12 @@ void		print_mode(mode_t mode, char **str)
 	*str = ft_strjoin(*str, ((mode & S_IXGRP) ? "x" : "-"));
 	*str = ft_strjoin(*str, ((mode & S_IROTH) ? "r" : "-"));
 	*str = ft_strjoin(*str, ((mode & S_IWOTH) ? "w" : "-"));
-	*str = ft_strjoin(*str, ((mode & S_IXOTH) ? "x" : "-"));
-	*str = ft_strjoin(*str, ((mode & S_ISVTX) ? "t" : ""));
-//	*str = ft_strjoin(*str, ((mode & S_ISGID) ? "@" : ""));
+	if (mode & S_ISVTX)
+		*str = ft_strjoin(*str, "t");
+	else if (mode & S_IXOTH)
+		*str = ft_strjoin(*str, "x");
+	else
+		*str = ft_strjoin(*str, "-");
 }
 
 void 		print_file(t_path *path,t_key keys)
@@ -76,12 +79,14 @@ void 		print_file(t_path *path,t_key keys)
 	}
 }
 
-void 		read_all(t_path *path, t_path **tmp, t_key *key)
+int 		read_all(t_path *path, t_path **tmp, t_key *key)
 {
 	t_dir	inform;
 	t_path	*p;
 
 	inform.dir = opendir(path->file ? ft_strjoin(path->road, ft_strjoin("/", path->file)) : path->road);
+	if (!inform.dir)
+		return (0);
 	while ((inform.entry = readdir(inform.dir)))
 	{
 		p = (t_path *)malloc(sizeof(t_path));
@@ -104,6 +109,8 @@ void 		read_all(t_path *path, t_path **tmp, t_key *key)
 			key->total += p->buff.st_blocks;
 		add_and_sort(*key, tmp, p);
 	}
+	closedir(inform.dir);
+	return (1);
 }
 
 void 		add_list(t_path *path, t_key *keys, t_char_list **list)
@@ -223,9 +230,11 @@ void 		print_dir(t_path *path,t_key keys, int flag)
 				keys.max_name_pw = 0;
 				if (flag || keys.count > 1)
 					ft_printf("%s:\n", path->av);
-				read_all(path, &tmp, &keys);
-				print_all(tmp, keys);
-				keys.key_recurs ? ft_ls(tmp, keys, flag + 1) : 0;
+				if (read_all(path, &tmp, &keys))
+				{
+					print_all(tmp, keys);
+					keys.key_recurs ? ft_ls(tmp, keys, flag + 1) : 0;
+				}
 				tmp = NULL;
 			}
 		}
