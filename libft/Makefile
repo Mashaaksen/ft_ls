@@ -20,6 +20,7 @@ G = gcc
 FLAG = -Wall -Wextra -Werror
 
 SRC = ft_count_words.c \
+		ft_strndup.c \
 		ft_strstr.c \
 		ft_strdel.c \
 		ft_strmap.c \

@@ -16,8 +16,17 @@ CMakeFiles/ls.dir/ft_ls.c.o: ../ft_ls.h
 CMakeFiles/ls.dir/ft_ls.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/ft_ls.c.o: ../libft/libft.h
 
+CMakeFiles/ls.dir/libft/ft_strndup.c.o: ../libft/ft_strndup.c
+CMakeFiles/ls.dir/libft/ft_strndup.c.o: ../libft/get_next_line.h
+CMakeFiles/ls.dir/libft/ft_strndup.c.o: ../libft/libft.h
+
 CMakeFiles/ls.dir/main.c.o: ../ft_ls.h
 CMakeFiles/ls.dir/main.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/main.c.o: ../libft/libft.h
 CMakeFiles/ls.dir/main.c.o: ../main.c
+
+CMakeFiles/ls.dir/sort_ls.c.o: ../ft_ls.h
+CMakeFiles/ls.dir/sort_ls.c.o: ../libft/get_next_line.h
+CMakeFiles/ls.dir/sort_ls.c.o: ../libft/libft.h
+CMakeFiles/ls.dir/sort_ls.c.o: ../sort_ls.c
 

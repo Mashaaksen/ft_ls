@@ -33,17 +33,6 @@ static	t_list	*ft_correct_fd(t_list **head, size_t fd)
 	return (node);
 }
 
-static	char	*ft_strndup(char *sorc, size_t n)
-{
-	char		*dup;
-
-	if (!(dup = (char *)malloc(sizeof(char) * n + 1)))
-		return (NULL);
-	dup = ft_strncpy(dup, sorc, n);
-	dup[n] = '\0';
-	return (dup);
-}
-
 static	char	*ft_strnjoin(char const *s1, char const *s2, size_t len)
 {
 	char		*s3;

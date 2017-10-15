@@ -60,21 +60,16 @@ void		ft_find_time(t_time *tmp, struct stat buff)
 	char 	**a;
 	char 	**b;
 
-	if (tmp->month != 13)
-	{
-		time = ctime(&buff.st_mtimespec.tv_sec);
-		a = ft_strsplit(time, ' ');
-		tmp->str_month = ft_strdup(a[1]);
-		tmp->month = find_month(a[1], 0);
-		tmp->day = ft_atoi(a[2]);
-		b = ft_strsplit(a[3], ':');
-		time = a[1];
-		tmp->hour = ft_atoi(b[0]);
-		tmp->minute = ft_atoi(b[1]);
-		tmp->sec = ft_atoi(b[2]);
-	}
-	else
-		tmp->month = 0;
+	time = ctime(&buff.st_mtimespec.tv_sec);
+	a = ft_strsplit(time, ' ');
+	tmp->str_month = ft_strdup(a[1]);
+	tmp->month = find_month(a[1], 0);
+	tmp->day = ft_atoi(a[2]);
+	b = ft_strsplit(a[3], ':');
+	time = a[1];
+	tmp->hour = ft_atoi(b[0]);
+	tmp->minute = ft_atoi(b[1]);
+	tmp->sec = ft_atoi(b[2]);
 }
 
 int 		main(int ac, char **av)

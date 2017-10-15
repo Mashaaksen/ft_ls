@@ -98,6 +98,9 @@
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h">
 			<Option target="ls"/>
 		</Unit>
+		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/libft/ft_strndup.c">
+			<Option target="ls"/>
+		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/main.c">
 			<Option target="ls"/>
 		</Unit>

@@ -204,6 +204,33 @@ ft_ls.c.s:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.s
 .PHONY : ft_ls.c.s
 
+libft/ft_strndup.o: libft/ft_strndup.c.o
+
+.PHONY : libft/ft_strndup.o
+
+# target to build an object file
+libft/ft_strndup.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.o
+.PHONY : libft/ft_strndup.c.o
+
+libft/ft_strndup.i: libft/ft_strndup.c.i
+
+.PHONY : libft/ft_strndup.i
+
+# target to preprocess a source file
+libft/ft_strndup.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.i
+.PHONY : libft/ft_strndup.c.i
+
+libft/ft_strndup.s: libft/ft_strndup.c.s
+
+.PHONY : libft/ft_strndup.s
+
+# target to generate assembly for a file
+libft/ft_strndup.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.s
+.PHONY : libft/ft_strndup.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -276,6 +303,9 @@ help:
 	@echo "... ft_ls.o"
 	@echo "... ft_ls.i"
 	@echo "... ft_ls.s"
+	@echo "... libft/ft_strndup.o"
+	@echo "... libft/ft_strndup.i"
+	@echo "... libft/ft_strndup.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
