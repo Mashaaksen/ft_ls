@@ -104,6 +104,9 @@
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/main.c">
 			<Option target="ls"/>
 		</Unit>
+		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/print_ls.c">
+			<Option target="ls"/>
+		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/sort_ls.c">
 			<Option target="ls"/>
 		</Unit>

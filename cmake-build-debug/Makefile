@@ -258,6 +258,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.s
 .PHONY : main.c.s
 
+print_ls.o: print_ls.c.o
+
+.PHONY : print_ls.o
+
+# target to build an object file
+print_ls.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.o
+.PHONY : print_ls.c.o
+
+print_ls.i: print_ls.c.i
+
+.PHONY : print_ls.i
+
+# target to preprocess a source file
+print_ls.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.i
+.PHONY : print_ls.c.i
+
+print_ls.s: print_ls.c.s
+
+.PHONY : print_ls.s
+
+# target to generate assembly for a file
+print_ls.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.s
+.PHONY : print_ls.c.s
+
 sort_ls.o: sort_ls.c.o
 
 .PHONY : sort_ls.o
@@ -309,6 +336,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... print_ls.o"
+	@echo "... print_ls.i"
+	@echo "... print_ls.s"
 	@echo "... sort_ls.o"
 	@echo "... sort_ls.i"
 	@echo "... sort_ls.s"

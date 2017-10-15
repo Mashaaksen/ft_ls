@@ -25,6 +25,11 @@ CMakeFiles/ls.dir/main.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/main.c.o: ../libft/libft.h
 CMakeFiles/ls.dir/main.c.o: ../main.c
 
+CMakeFiles/ls.dir/print_ls.c.o: ../ft_ls.h
+CMakeFiles/ls.dir/print_ls.c.o: ../libft/get_next_line.h
+CMakeFiles/ls.dir/print_ls.c.o: ../libft/libft.h
+CMakeFiles/ls.dir/print_ls.c.o: ../print_ls.c
+
 CMakeFiles/ls.dir/sort_ls.c.o: ../ft_ls.h
 CMakeFiles/ls.dir/sort_ls.c.o: ../libft/get_next_line.h
 CMakeFiles/ls.dir/sort_ls.c.o: ../libft/libft.h

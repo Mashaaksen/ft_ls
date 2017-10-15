@@ -72,6 +72,26 @@ void		ft_find_time(t_time *tmp, struct stat buff)
 	tmp->sec = ft_atoi(b[2]);
 }
 
+void add_terget(const t_path *path, t_char_list **tmp)
+{
+	ssize_t 	k;
+	char	link_name[PATH_LEN];
+
+	k = readlink(path->av, link_name, PATH_LEN);
+	if (k >= PATH_LEN)
+		(*tmp)->target = ft_strdup("Wrong: link filename too long!");
+	else
+	{
+		if (k == -1)
+			(*tmp)->target = ft_strdup("invalid symbolic link!");
+		else
+		{
+			link_name[k] = '\0';
+			(*tmp)->target = ft_strdup(link_name);
+		}
+	}
+}
+
 int 		main(int ac, char **av)
 {
 	t_ls	ls;
@@ -80,5 +100,5 @@ int 		main(int ac, char **av)
 	av++;
 	find_keys(&ls, &av);
 	find_path(&ls, av);
-	ft_ls(ls.path, ls.keys, 0);
+	ft_ls(ls.path, ls.keys, 0, NULL);
 }

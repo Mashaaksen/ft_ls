@@ -25,6 +25,11 @@ CMakeFiles/ls.dir/main.c.o
  /nfs/2016/m/maksenov/CLionProjects/ls/libft/get_next_line.h
  /nfs/2016/m/maksenov/CLionProjects/ls/libft/libft.h
  /nfs/2016/m/maksenov/CLionProjects/ls/main.c
+CMakeFiles/ls.dir/print_ls.c.o
+ /nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h
+ /nfs/2016/m/maksenov/CLionProjects/ls/libft/get_next_line.h
+ /nfs/2016/m/maksenov/CLionProjects/ls/libft/libft.h
+ /nfs/2016/m/maksenov/CLionProjects/ls/print_ls.c
 CMakeFiles/ls.dir/sort_ls.c.o
  /nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h
  /nfs/2016/m/maksenov/CLionProjects/ls/libft/get_next_line.h

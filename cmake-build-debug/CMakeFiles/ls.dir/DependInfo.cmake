@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/ft_ls.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/libft/ft_strndup.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/libft/ft_strndup.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/main.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/main.c.o"
+  "/nfs/2016/m/maksenov/CLionProjects/ls/print_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/print_ls.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/sort_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/sort_ls.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

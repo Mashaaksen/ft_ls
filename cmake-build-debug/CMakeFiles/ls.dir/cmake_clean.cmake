@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ls.dir/ft_ls.c.o"
   "CMakeFiles/ls.dir/sort_ls.c.o"
   "CMakeFiles/ls.dir/libft/ft_strndup.c.o"
+  "CMakeFiles/ls.dir/print_ls.c.o"
   "ls.pdb"
   "ls"
 )

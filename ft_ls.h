@@ -86,12 +86,20 @@ typedef	struct 		s_ls
 
 void 		find_keys(t_ls *ls, char ***av);
 void 		find_path(t_ls *ls, char **av);
-void 		ft_ls(t_path *path, t_key keys, int flag);
+void 		ft_ls(t_path *path, t_key keys, int flag, t_path *tmp);
 void 		add_and_sort(t_key keys, t_path **path, t_path *tmp);
 int			alpha(char *a, char *b);
 int 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key);
 int			ft_time(t_time a, t_time b);
 void		ft_find_time(t_time *tmp, struct stat buff);
 int			find_month(char *str, int i);
+void 		add_list(t_path *path, t_key *keys, t_char_list **list, t_char_list *tmp);
+void		print_tipe(mode_t mode, char **str);
+void		print_mode(mode_t mode, char **str);
+void 		print_file(t_path *path,t_key keys);
+void		full_tmp(t_path **tmp, char *av, char *road, char *file);
+t_char_list *get_list(const t_path *path, t_key *keys, int i, t_char_list *tmp);
+void add_terget(const t_path *path, t_char_list **tmp);
+
 
 #endif
