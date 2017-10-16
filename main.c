@@ -1,26 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maksenov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/16 13:25:23 by maksenov          #+#    #+#             */
+/*   Updated: 2017/10/16 13:25:24 by maksenov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-int			ft_time(t_time a, t_time b)
+int			ft_time(t_time a, t_time b, char *path, char *tmp)
 {
-	if (a.month > b.month)
+	if (a.tv_sec > b.tv_sec)
 		return (1);
-	if (a.month == b.month)
+	if (a.tv_sec == b.tv_sec)
 	{
-		if (a.day > b.day)
+		if (a.nansec > b.nansec)
 			return (1);
-		if (a.day == b.day)
-		{
-			if (a.hour > b.hour)
-				return (1);
-			if (a.hour == b.hour)
-			{
-				if (a.minute > b.minute)
-					return (1);
-				if (a.minute == b.minute)
-					if (a.sec > b.sec)
-						return (1);
-			}
-		}
+		if (a.nansec == b.nansec)
+			return (alpha(path, tmp) ? 1 : 0);
 	}
 	return (0);
 }
@@ -51,30 +52,34 @@ int			find_month(char *str, int i)
 		return (i);
 	if (i++ && !ft_strcmp(str, "Dec"))
 		return (i);
-	return (i);
+	return (0);
 }
 
 void		ft_find_time(t_time *tmp, struct stat buff)
 {
-	char 	*time;
-	char 	**a;
-	char 	**b;
+	char	*str_time;
+	char 	*now_time;
+	time_t timer;
 
-	time = ctime(&buff.st_mtimespec.tv_sec);
-	a = ft_strsplit(time, ' ');
-	tmp->str_month = ft_strdup(a[1]);
-	tmp->month = find_month(a[1], 0);
-	tmp->day = ft_atoi(a[2]);
-	b = ft_strsplit(a[3], ':');
-	time = a[1];
-	tmp->hour = ft_atoi(b[0]);
-	tmp->minute = ft_atoi(b[1]);
-	tmp->sec = ft_atoi(b[2]);
+	timer = time(NULL);
+	str_time = ft_strdup(ctime(&buff.st_mtimespec.tv_sec));
+	now_time = ctime(&timer);
+	tmp->year = ft_atoi(ft_strrchr(str_time, ' '));
+	if (tmp->year == ft_atoi(ft_strrchr(now_time, ' ')))
+		tmp->year = 0;
+	tmp->str_month = ft_strndup(ft_strchr(str_time, ' ') + 1, 3);
+	tmp->month = find_month(tmp->str_month, 0);
+	tmp->day = ft_atoi(ft_strchr(ft_strchr(str_time, ' ') + 1, ' '));
+	tmp->hour = ft_atoi(ft_strchr(str_time, ':') - 2);
+	tmp->minute = ft_atoi(ft_strchr(str_time, ':') + 1);
+	tmp->sec = ft_atoi(ft_strrchr(str_time, ':') + 1);
+	tmp->nansec = buff.st_mtimespec.tv_nsec;
+	tmp->tv_sec = buff.st_mtimespec.tv_sec;
 }
 
-void add_terget(const t_path *path, t_char_list **tmp)
+void		add_terget(const t_path *path, t_char_list **tmp)
 {
-	ssize_t 	k;
+	ssize_t	k;
 	char	link_name[PATH_LEN];
 
 	k = readlink(path->av, link_name, PATH_LEN);
@@ -92,7 +97,7 @@ void add_terget(const t_path *path, t_char_list **tmp)
 	}
 }
 
-int 		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_ls	ls;
 

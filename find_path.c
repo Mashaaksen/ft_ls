@@ -89,13 +89,20 @@ void		find_path(t_ls *ls, char **av)
 	t_path	*tmp;
 
 	ls->path = NULL;
+	tmp = NULL;
+	if (!*av)
+	{
+		full_tmp(&tmp, "./", "./", NULL);
+		add_and_sort(ls->keys, &ls->path, tmp);
+		ls->keys.count++;
+	}
 	while (*av)
 	{
 		tmp = NULL;
 		if (check_right_path(*av, &ls->inform, &tmp, &ls->keys))
 			add_and_sort(ls->keys, &ls->path, tmp);
 		else
-			ft_printf("ft_ls: %s: No such file or directory\n", av);
+			ft_printf("ft_ls: %s: No such file or directory\n", *av);
 		av++;
 	}
 }

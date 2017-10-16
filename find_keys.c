@@ -12,6 +12,26 @@
 
 #include "ft_ls.h"
 
+void	forward_alpha(t_path **path, t_path *tmp, t_path *head)
+{
+	head = *path;
+	while (*path && (*path)->next && !alpha((*path)->next->av, tmp->av))
+		*path = (*path)->next;
+	tmp->next = (*path)->next;
+	(*path)->next = tmp;
+	*path = head;
+}
+
+void	back_alpha(t_path **path, t_path *tmp, t_path *head)
+{
+	head = *path;
+	while (*path && (*path)->next && alpha((*path)->next->av, tmp->av))
+		*path = (*path)->next;
+	tmp->next = (*path)->next;
+	(*path)->next = tmp;
+	*path = head;
+}
+
 void	new_ls(t_ls **ls)
 {
 	(*ls)->keys.key_all = 0;
@@ -25,6 +45,7 @@ void	new_ls(t_ls **ls)
 
 void	find_keys(t_ls *ls, char ***av)
 {
+	new_ls(&ls);
 	while (**av && (**av)[0] == '-' && (**av)[1])
 	{
 		(**av)++;

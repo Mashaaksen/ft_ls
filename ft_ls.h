@@ -23,6 +23,7 @@ typedef struct			s_char_list
 	char				*pw_name;
 	char				*gr_name;
 	off_t				st_size;
+	int 				year;
 	char 				*str_month;
 	int					day;
 	int					hour;
@@ -34,12 +35,15 @@ typedef struct			s_char_list
 
 typedef struct		s_time
 {
+	int 			year;
 	char 			*str_month;
 	int				month;
 	int				day;
 	int				hour;
 	int				minute;
 	int				sec;
+	long 			nansec;
+	__darwin_time_t	tv_sec;
 }					t_time;
 
 typedef struct 		s_key
@@ -90,16 +94,20 @@ void 		ft_ls(t_path *path, t_key keys, int flag, t_path *tmp);
 void 		add_and_sort(t_key keys, t_path **path, t_path *tmp);
 int			alpha(char *a, char *b);
 int 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key);
-int			ft_time(t_time a, t_time b);
+int			ft_time(t_time a, t_time b, char *path, char *tmp);
 void		ft_find_time(t_time *tmp, struct stat buff);
 int			find_month(char *str, int i);
 void 		add_list(t_path *path, t_key *keys, t_char_list **list, t_char_list *tmp);
 void		print_tipe(mode_t mode, char **str);
 void		print_mode(mode_t mode, char **str);
-void 		print_file(t_path *path,t_key keys);
+void 		print_file(t_path *path,t_key keys, t_char_list *list);
 void		full_tmp(t_path **tmp, char *av, char *road, char *file);
-t_char_list *get_list(const t_path *path, t_key *keys, int i, t_char_list *tmp);
+t_char_list *get_list(t_path *path, t_key *keys, int i, t_char_list *tmp);
 void add_terget(const t_path *path, t_char_list **tmp);
+void	new_ls(t_ls **ls);
+void		forward_alpha(t_path **path, t_path *tmp, t_path *head);
+void		back_alpha(t_path **path, t_path *tmp, t_path *head);
+void print_list(t_key keys, t_char_list *list, int dir);
 
 
 #endif

@@ -59,7 +59,7 @@ t_char_list **list, t_char_list *tmp)
 	}
 }
 
-t_char_list			*get_list(const t_path *path, t_key *keys, int i,
+t_char_list			*get_list(t_path *path, t_key *keys, int i,
 t_char_list *tmp)
 {
 	tmp = (t_char_list *)malloc(sizeof(t_char_list));
@@ -69,6 +69,7 @@ t_char_list *tmp)
 	tmp->pw_name = ft_strdup(path->uid->pw_name);
 	tmp->gr_name = ft_strdup(path->gid->gr_name);
 	tmp->st_size = path->buff.st_size;
+	tmp->year = path->time.year;
 	tmp->str_month = path->time.str_month;
 	tmp->day = path->time.day;
 	tmp->hour = path->time.hour;
@@ -106,19 +107,14 @@ void				print_all(t_path *path, t_key keys)
 	keys.key_list ? ft_printf("total %i\n", keys.total) : 0;
 	while (list)
 	{
-		ft_printf("%s%s %*i %-*s  %-*s  %*i %s %2i %02i:%02i %s", list->tipe,
-list->mode, keys.max_link + 1, list->st_nlink, keys.max_name_pw, list->pw_name,
-keys.max_name_gr, list->gr_name, keys.max_size, (int)list->st_size,
-list->str_month, list->day, list->hour, list->minute, list->file);
-		(*(list->tipe) == 'l') ? ft_printf(" -> %s\n", list->target) : 0;
-		(*(list->tipe) != 'l') ? ft_printf("\n") : 0;
+		print_list(keys, list, 1);
 		list = list->next;
 	}
 }
 
 void				ft_ls(t_path *path, t_key keys, int flag, t_path *tmp)
 {
-	keys.file && !flag ? print_file(path, keys) : 0;
+	keys.file && !flag ? print_file(path, keys, NULL) : 0;
 	while (path)
 	{
 		if (path->type == 'd')
@@ -131,7 +127,7 @@ void				ft_ls(t_path *path, t_key keys, int flag, t_path *tmp)
 				keys.max_size = 0;
 				keys.max_name_gr = 0;
 				keys.max_name_pw = 0;
-				(flag || keys.count > 1) ? ft_printf("%s:\n", path->av) : 0;
+				(flag || keys.count > 1) ? ft_printf("\n%s:\n", path->av) : 0;
 				if (read_all(path, &tmp, &keys))
 				{
 					print_all(tmp, keys);

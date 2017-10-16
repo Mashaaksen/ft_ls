@@ -12,7 +12,9 @@ FLAG = -Wall -Wextra -Werror
 SRC =	main.c \
 		ft_ls.c \
 		find_keys.c \
-		find_path.c
+		find_path.c \
+		print_ls.c \
+		sort_ls.c
 
 OBJ = $(SRC:.c=.o)
 

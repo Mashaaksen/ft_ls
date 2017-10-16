@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_ls.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: maksenov <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/16 13:06:54 by maksenov          #+#    #+#             */
-/*   Updated: 2017/10/16 13:06:55 by maksenov         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ls.h"
 
 void		forward_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && !ft_time(tmp->next->time, (*path)->time, (*path)->av, tmp->av))
+	while (*path && (*path)->next && !ft_time(tmp->time, (*path)->next->time))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;
@@ -25,7 +13,8 @@ void		forward_time(t_path **path, t_path *tmp, t_path *head)
 void		back_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && tmp->next && ft_time(tmp->next->time, (*path)->time, (*path)->av, tmp->av))
+	while (*path && (*path)->next && ft_time(tmp->next->time,
+(*path)->next->time))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;
@@ -39,7 +28,7 @@ void		time_sort(t_key keys, t_path **path, t_path *tmp)
 	head = NULL;
 	if (keys.key_rev == 0)
 	{
-		if (ft_time(tmp->time, (*path)->time, (*path)->av, tmp->av))
+		if (ft_time(tmp->time, (*path)->time))
 		{
 			tmp->next = *path;
 			*path = tmp;
@@ -49,7 +38,7 @@ void		time_sort(t_key keys, t_path **path, t_path *tmp)
 	}
 	else
 	{
-		if (!ft_time(tmp->time, (*path)->time, (*path)->av, tmp->av))
+		if (!ft_time(tmp->time, (*path)->time))
 		{
 			tmp->next = *path;
 			*path = tmp;
