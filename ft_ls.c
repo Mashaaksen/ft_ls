@@ -104,7 +104,7 @@ void				print_all(t_path *path, t_key keys)
 		}
 		path = path->next;
 	}
-	keys.key_list ? ft_printf("total %i\n", keys.total) : 0;
+	keys.key_list && list ? ft_printf("total %i\n", keys.total) : 0;
 	while (list)
 	{
 		print_list(keys, list, 1);
@@ -117,7 +117,7 @@ void				ft_ls(t_path *path, t_key keys, int flag, t_path *tmp)
 	keys.file && !flag ? print_file(path, keys, NULL) : 0;
 	while (path)
 	{
-		if (path->type == 'd')
+		if (path->type == 'd' && (!path->file || (ft_strcmp(path->file, ".") && ft_strcmp(path->file, ".."))))
 		{
 			if (!path->file || ((keys.key_all || !flag) &&
 *(path->file) == '.') || *(path->file) != '.')

@@ -26,35 +26,6 @@ int			ft_time(t_time a, t_time b, char *path, char *tmp)
 	return (0);
 }
 
-int			find_month(char *str, int i)
-{
-	if (i++ && !ft_strcmp(str, "Jan"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Feb"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Mar"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Apr"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "May"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Jun"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Jul"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Aug"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Sep"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Oct"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Nov"))
-		return (i);
-	if (i++ && !ft_strcmp(str, "Dec"))
-		return (i);
-	return (0);
-}
-
 void		ft_find_time(t_time *tmp, struct stat buff)
 {
 	char	*str_time;
@@ -68,11 +39,9 @@ void		ft_find_time(t_time *tmp, struct stat buff)
 	if (tmp->year == ft_atoi(ft_strrchr(now_time, ' ')))
 		tmp->year = 0;
 	tmp->str_month = ft_strndup(ft_strchr(str_time, ' ') + 1, 3);
-	tmp->month = find_month(tmp->str_month, 0);
 	tmp->day = ft_atoi(ft_strchr(ft_strchr(str_time, ' ') + 1, ' '));
 	tmp->hour = ft_atoi(ft_strchr(str_time, ':') - 2);
 	tmp->minute = ft_atoi(ft_strchr(str_time, ':') + 1);
-	tmp->sec = ft_atoi(ft_strrchr(str_time, ':') + 1);
 	tmp->nansec = buff.st_mtimespec.tv_nsec;
 	tmp->tv_sec = buff.st_mtimespec.tv_sec;
 }
@@ -100,10 +69,16 @@ void		add_terget(const t_path *path, t_char_list **tmp)
 int			main(int ac, char **av)
 {
 	t_ls	ls;
+	struct winsize win;
 
 	ac = 0;
 	av++;
 	find_keys(&ls, &av);
 	find_path(&ls, av);
+	if (ls.keys.key_one)
+	{
+		ioctl(0, TIOCGWINSZ, &win);
+		ls.keys.ws_col = &win.ws_col;
+	}
 	ft_ls(ls.path, ls.keys, 0, NULL);
 }

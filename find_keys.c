@@ -41,6 +41,7 @@ void	new_ls(t_ls **ls)
 	(*ls)->keys.key_time = 0;
 	(*ls)->keys.count = 0;
 	(*ls)->keys.file = 0;
+	(*ls)->keys.key_one = 0;
 }
 
 void	find_keys(t_ls *ls, char ***av)
@@ -52,10 +53,10 @@ void	find_keys(t_ls *ls, char ***av)
 		while (***av)
 		{
 			if (***av != 'l' && ***av != 'R' && ***av != 'a' &&
-***av != 'r' && ***av != 't')
+***av != 'r' && ***av != 't' && ***av != '1')
 			{
 				ft_printf("ft_ls: illegal option -- %c\nusage:"
-"ft_ls [-lraRt] [file ...]\n", ***av);
+"ft_ls [-lraRt1] [file ...]\n", ***av);
 				exit(0);
 			}
 			***av == 'l' ? ls->keys.key_list = 1 : 0;
@@ -63,6 +64,7 @@ void	find_keys(t_ls *ls, char ***av)
 			***av == 'R' ? ls->keys.key_recurs = 1 : 0;
 			***av == 'a' ? ls->keys.key_all = 1 : 0;
 			***av == 't' ? ls->keys.key_time = 1 : 0;
+			***av == '1' ? ls->keys.key_one = 1 : 0;
 			(**av)++;
 		}
 		(*av)++;

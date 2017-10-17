@@ -86,6 +86,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/bonus_part.c">
+			<Option target="ls"/>
+		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/ls/find_keys.c">
 			<Option target="ls"/>
 		</Unit>

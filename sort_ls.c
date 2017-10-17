@@ -15,7 +15,7 @@
 void		forward_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && !ft_time(tmp->next->time, (*path)->time, (*path)->av, tmp->av))
+	while (*path && (*path)->next && ft_time((*path)->next->time, tmp->time, (*path)->next->av, tmp->av))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;
@@ -25,7 +25,7 @@ void		forward_time(t_path **path, t_path *tmp, t_path *head)
 void		back_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && tmp->next && ft_time(tmp->next->time, (*path)->time, (*path)->av, tmp->av))
+	while (*path && (*path)->next && !ft_time((*path)->next->time, tmp->time, (*path)->next->av, tmp->av))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;

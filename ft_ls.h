@@ -13,6 +13,9 @@
 # include <sys/xattr.h>
 # include <time.h>
 # include <dirent.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <termios.h>
 
 typedef struct			s_char_list
 {
@@ -37,11 +40,9 @@ typedef struct		s_time
 {
 	int 			year;
 	char 			*str_month;
-	int				month;
 	int				day;
 	int				hour;
 	int				minute;
-	int				sec;
 	long 			nansec;
 	__darwin_time_t	tv_sec;
 }					t_time;
@@ -53,6 +54,7 @@ typedef struct 		s_key
 	int 			key_recurs;
 	int 			key_rev;
 	int 			key_time;
+	int 			key_one;
 	int 			file;
 	int 			count;
 	int 			total;
@@ -60,6 +62,7 @@ typedef struct 		s_key
 	int				max_link;
 	int				max_name_gr;
 	int				max_name_pw;
+	unsigned short	*ws_col;
 }					t_key;
 
 typedef struct 		s_path
@@ -108,6 +111,5 @@ void	new_ls(t_ls **ls);
 void		forward_alpha(t_path **path, t_path *tmp, t_path *head);
 void		back_alpha(t_path **path, t_path *tmp, t_path *head);
 void print_list(t_key keys, t_char_list *list, int dir);
-
 
 #endif
