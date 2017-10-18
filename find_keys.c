@@ -59,12 +59,20 @@ void	find_keys(t_ls *ls, char ***av)
 "ft_ls [-lraRt1] [file ...]\n", ***av);
 				exit(0);
 			}
-			***av == 'l' ? ls->keys.key_list = 1 : 0;
+			if (***av == 'l')
+			{
+				ls->keys.key_list = 1;
+				ls->keys.key_one ? ls->keys.key_one = 0 : 0;
+			}
 			***av == 'r' ? ls->keys.key_rev = 1 : 0;
 			***av == 'R' ? ls->keys.key_recurs = 1 : 0;
 			***av == 'a' ? ls->keys.key_all = 1 : 0;
 			***av == 't' ? ls->keys.key_time = 1 : 0;
-			***av == '1' ? ls->keys.key_one = 1 : 0;
+			if (***av == '1')
+			{
+				ls->keys.key_one = 1;
+				ls->keys.key_list ? ls->keys.key_list = 0 : 0;
+			}
 			(**av)++;
 		}
 		(*av)++;

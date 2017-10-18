@@ -123,33 +123,6 @@ ls/fast:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/build
 .PHONY : ls/fast
 
-bonus_part.o: bonus_part.c.o
-
-.PHONY : bonus_part.o
-
-# target to build an object file
-bonus_part.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/bonus_part.c.o
-.PHONY : bonus_part.c.o
-
-bonus_part.i: bonus_part.c.i
-
-.PHONY : bonus_part.i
-
-# target to preprocess a source file
-bonus_part.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/bonus_part.c.i
-.PHONY : bonus_part.c.i
-
-bonus_part.s: bonus_part.c.s
-
-.PHONY : bonus_part.s
-
-# target to generate assembly for a file
-bonus_part.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/bonus_part.c.s
-.PHONY : bonus_part.c.s
-
 find_keys.o: find_keys.c.o
 
 .PHONY : find_keys.o
@@ -348,9 +321,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ls"
-	@echo "... bonus_part.o"
-	@echo "... bonus_part.i"
-	@echo "... bonus_part.s"
 	@echo "... find_keys.o"
 	@echo "... find_keys.i"
 	@echo "... find_keys.s"

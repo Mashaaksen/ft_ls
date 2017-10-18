@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/nfs/2016/m/maksenov/CLionProjects/ls/bonus_part.c
-ft_ls.h
-/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h
-
 /nfs/2016/m/maksenov/CLionProjects/ls/find_keys.c
 ft_ls.h
 /nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.h

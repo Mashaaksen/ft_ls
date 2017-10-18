@@ -33,9 +33,8 @@ void		full_tmp(t_path **tmp, char *av, char *road, char *file)
 	*tmp = (t_path *)malloc(sizeof(t_path));
 	(*tmp)->av = av;
 	(*tmp)->road = road;
-	(*tmp)->file = file;
 	(*tmp)->type = 'd';
-	(*tmp)->time.month = 13;
+	(*tmp)->file = file;
 	(*tmp)->next = NULL;
 }
 

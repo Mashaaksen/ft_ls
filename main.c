@@ -75,10 +75,12 @@ int			main(int ac, char **av)
 	av++;
 	find_keys(&ls, &av);
 	find_path(&ls, av);
-	if (ls.keys.key_one)
+	if (!ls.keys.key_one)
 	{
 		ioctl(0, TIOCGWINSZ, &win);
+//		win.ws_col = 353;
 		ls.keys.ws_col = &win.ws_col;
+
 	}
 	ft_ls(ls.path, ls.keys, 0, NULL);
 }

@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/nfs/2016/m/maksenov/CLionProjects/ls/bonus_part.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/bonus_part.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/find_keys.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/find_keys.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/find_path.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/find_path.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/ft_ls.c.o"

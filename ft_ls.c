@@ -16,6 +16,9 @@ int					read_all(t_path *path, t_path **tmp, t_key *key)
 {
 	t_dir			inform;
 	t_path			*p;
+	int 			i;
+	int 			k;
+	char 			link_name[PATH_LEN + 1];
 
 	inform.dir = opendir(path->file ? ft_strjoin(path->road,
 ft_strjoin("/", path->file)) : path->road);
@@ -26,11 +29,53 @@ ft_strjoin("/", path->file)) : path->road);
 		full_tmp(&p, ft_strjoin(ft_strjoin(path->av, "/"),
 inform.entry->d_name), path->av, ft_strdup(inform.entry->d_name));
 		lstat(p->av, &p->buff);
+		print_tipe(p->buff.st_mode, &p->type);
+		p->gid = NULL;
+		p->uid = NULL;
+		if (key->key_list && ((key->key_all && *(p->file) == '.') || *(p->file) != '.'))
+		{
+			print_tipe(p->buff.st_mode, &p->type);
+			print_mode(p->buff.st_mode, &p->mode);
+			p->uid = getpwuid(p->buff.st_uid);
+			p->gid = getgrgid(p->buff.st_gid);
+			i = (int)ft_strlen(ft_itoa_base((size_t)p->buff.st_size, 'i'));
+			(i > key->max_size) ? key->max_size = i : 0;
+			i = (int)ft_strlen(ft_itoa_base((size_t)p->buff.st_nlink, 'i'));
+			(i > key->max_link) ? key->max_link = i : 0;
+			if (p->uid && p->gid)
+			{
+				i = (int) ft_strlen(p->uid->pw_name);
+				(i > key->max_name_pw) ? key->max_name_pw = i : 0;
+				i = (int) ft_strlen(p->gid->gr_name);
+				(i > key->max_name_gr) ? key->max_name_gr = i : 0;
+
+			}
+			if (p->type == 'l')
+			{
+				k = (int) readlink(p->target, link_name, PATH_LEN);
+				if (k >= PATH_LEN)
+					p->target = ft_strdup("Wrong: link filename too long!");
+				else
+				{
+					if (k == -1)
+						p->target = ft_strdup("invalid symbolic link!");
+					else
+					{
+						link_name[k] = '\0';
+						p->target = ft_strdup(link_name);
+					}
+				}
+			}
+		}
 		key->count++;
+		key->count_all++;
+		*inform.entry->d_name != '.' ? key->count_without_dot++ : 0;
+		i = (int) ft_strlen(p->file);
+		if (*inform.entry->d_name != '.')
+			(i > key->max_len_name) ? key->max_len_name = i : 0;
+		else
+			(i > key->max_len_name_dot) ? key->max_len_name_dot = i : 0;
 		(key->key_time || key->key_list) ? ft_find_time(&p->time, p->buff) : 0;
-		S_ISDIR(p->buff.st_mode) ? p->type = 'd' : 0;
-		!S_ISDIR(p->buff.st_mode) ? p->type = 'f' : 0;
-		!S_ISDIR(p->buff.st_mode) ? key->file = 1 : 0;
 		if ((key->key_all && *(p->file) == '.') || *(p->file) != '.')
 			key->total += p->buff.st_blocks;
 		add_and_sort(*key, tmp, p);
@@ -39,82 +84,106 @@ inform.entry->d_name), path->av, ft_strdup(inform.entry->d_name));
 	return (1);
 }
 
-void				add_list(t_path *path, t_key *keys,
-t_char_list **list, t_char_list *tmp)
+void		print_list(t_key keys, t_path *path, int dir)
 {
-	t_char_list		*head;
-
-	tmp = get_list(path, keys, 0, tmp);
-	if (*(tmp->tipe) == 'l')
-		add_terget(path, &tmp);
-	if (!*list)
-		*list = tmp;
-	else
+	while (path)
 	{
-		head = *list;
-		while (*list && (*list)->next)
-			*list = (*list)->next;
-		(*list)->next = tmp;
-		*list = head;
+		if (((keys.key_all && *(path->file) == '.') || *(path->file) != '.'))
+		{
+			ft_printf("%c%s %*i %-*s  %-*s  %*i %s %2i", path->type,
+					  path->mode, keys.max_link + 1, path->buff.st_nlink, keys.max_name_pw, path->uid->pw_name,
+					  keys.max_name_gr, path->gid->gr_name, keys.max_size, (int) path->buff.st_size,
+					  path->time.str_month, path->time.day);
+			if (path->time.year == 0)
+				ft_printf(" %02i:%02i %s", path->time.hour, path->time.minute, (!dir ? path->av : path->file));
+			else
+				ft_printf(" %i %s", path->time.year, (!dir ? path->av : path->file));
+			if (path->type == 'l')
+				ft_printf(" -> %s\n", path->target);
+			else
+				ft_printf("\n");
+		}
+		path = path->next;
 	}
 }
 
-t_char_list			*get_list(t_path *path, t_key *keys, int i,
-t_char_list *tmp)
+void 				print_raw(t_path *path, int n, t_key key)
 {
-	tmp = (t_char_list *)malloc(sizeof(t_char_list));
-	print_tipe(path->buff.st_mode, &tmp->tipe);
-	print_mode(path->buff.st_mode, &tmp->mode);
-	tmp->st_nlink = path->buff.st_nlink;
-	tmp->pw_name = ft_strdup(path->uid->pw_name);
-	tmp->gr_name = ft_strdup(path->gid->gr_name);
-	tmp->st_size = path->buff.st_size;
-	tmp->year = path->time.year;
-	tmp->str_month = path->time.str_month;
-	tmp->day = path->time.day;
-	tmp->hour = path->time.hour;
-	tmp->minute = path->time.minute;
-	tmp->file = path->file;
-	tmp->av = path->av;
-	i = (int)ft_strlen(ft_itoa_base((size_t)tmp->st_size, 'i'));
-	(i > keys->max_size) ? keys->max_size = i : 0;
-	i = (int)ft_strlen(ft_itoa_base((size_t)tmp->st_nlink, 'i'));
-	(i > keys->max_link) ? keys->max_link = i : 0;
-	i = (int)ft_strlen(tmp->pw_name);
-	(i > keys->max_name_pw) ? keys->max_name_pw = i : 0;
-	i = (int)ft_strlen(tmp->gr_name);
-	(i > keys->max_name_gr) ? keys->max_name_gr = i : 0;
-	tmp->next = NULL;
-	return (tmp);
+	int 			i;
+
+	i = 1;
+	while (path && key.print_col >= 0)
+	{
+		while (path && !key.key_all && *(path->file) == '.')
+			path = path->next;
+		if (!path)
+			break ;
+		if (i == n - key.print_line)
+		{
+			ft_printf("%-*s", (key.key_all ? key.max_len_name_dot + 8 : key.max_len_name + 8), path->file);
+			key.print_col--;
+		}
+		i++;
+		path = path->next;
+		if (i == n + 1)
+			i = 1;
+	}
+}
+
+void 				print_col(t_key keys, t_path *path)
+{
+	int 			n;
+	int 			len_name;
+	int 			count;
+
+	if (keys.key_all)
+	{
+		len_name = keys.max_len_name_dot;
+		count = keys.count_all;
+	}
+	else
+	{
+		len_name = keys.max_len_name;
+		count = keys.count_without_dot;
+	}
+	keys.print_col = (*keys.ws_col - (*keys.ws_col / 10)) / (len_name + 8);
+	keys.print_line = count / keys.print_col;
+	n = keys.print_line;
+	while (keys.print_line-- >= 0)
+	{
+		if (n != keys.print_line + 1)
+			ft_printf("\n");
+		print_raw(path, n, keys);
+	}
 }
 
 void				print_all(t_path *path, t_key keys)
 {
-	t_char_list		*list;
+	t_path			*tmp;
 
-	list = NULL;
-	while (path != NULL)
+	tmp = path;
+	if (!keys.key_list && keys.key_one)
 	{
-		if ((keys.key_all && *(path->file) == '.') || *(path->file) != '.')
+		while (path != NULL)
 		{
-			!keys.key_list ? ft_printf("%s\n", path->file) : 0;
-			(keys.key_list) ? path->uid = getpwuid(path->buff.st_uid) : 0;
-			(keys.key_list) ? path->gid = getgrgid(path->buff.st_gid) : 0;
-			(keys.key_list) ? add_list(path, &keys, &list, NULL) : 0;
+			if ((keys.key_all && *(path->file) == '.') || *(path->file) != '.')
+				ft_printf("%s\n", path->file);
+			path = path->next;
 		}
-		path = path->next;
+
 	}
-	keys.key_list && list ? ft_printf("total %i\n", keys.total) : 0;
-	while (list)
+	else if (!keys.key_one && !keys.key_list)
+		print_col(keys, tmp);
+	else
 	{
-		print_list(keys, list, 1);
-		list = list->next;
+		tmp ? ft_printf("total %i\n", keys.total) : 0;
+		print_list(keys, tmp, 1);
 	}
 }
 
 void				ft_ls(t_path *path, t_key keys, int flag, t_path *tmp)
 {
-	keys.file && !flag ? print_file(path, keys, NULL) : 0;
+	keys.file && !flag ? print_file(path, keys) : 0;
 	while (path)
 	{
 		if (path->type == 'd' && (!path->file || (ft_strcmp(path->file, ".") && ft_strcmp(path->file, ".."))))
@@ -123,10 +192,15 @@ void				ft_ls(t_path *path, t_key keys, int flag, t_path *tmp)
 *(path->file) == '.') || *(path->file) != '.')
 			{
 				keys.total = 0;
+				keys.count_all = 0;
+				keys.count_without_dot = 0;
 				keys.max_link = 0;
 				keys.max_size = 0;
 				keys.max_name_gr = 0;
 				keys.max_name_pw = 0;
+				keys.max_name_pw = 0;
+				keys.max_len_name = 0;
+				keys.max_len_name_dot = 0;
 				(flag || keys.count > 1) ? ft_printf("\n%s:\n", path->av) : 0;
 				if (read_all(path, &tmp, &keys))
 				{
