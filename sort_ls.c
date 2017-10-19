@@ -88,8 +88,18 @@ void		alpha_sort(t_key keys, t_path **path, t_path *tmp)
 
 void		add_and_sort(t_key keys, t_path **path, t_path *tmp)
 {
+	t_path	*head;
+
 	if (*path == NULL)
 		*path = tmp;
+	else if (keys.key_without_sort)
+	{
+		head = *path;
+		while ((*path)->next)
+			*path = (*path)->next;
+		(*path)->next = tmp;
+		*path = head;
+	}
 	else
 	{
 		if (keys.key_time == 0)

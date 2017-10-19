@@ -55,7 +55,7 @@ int			check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key)
 				lstat(av, &(*tmp)->buff);
 				key->count++;
 				if (key->key_time || key->key_list)
-					ft_find_time(&((*tmp)->time), (*tmp)->buff);
+					ft_find_time(&((*tmp)->time), (*tmp)->buff, *key);
 				!S_ISDIR((*tmp)->buff.st_mode) ? key->file = 1 : 0;
 				!S_ISDIR((*tmp)->buff.st_mode) ? (*tmp)->type = 'f' : 0;
 				break ;
@@ -75,6 +75,8 @@ int			alpha(char *a, char *b)
 	s2 = b;
 	while (*s1 || *s2)
 	{
+//		if (*s2)
+//			return (1);
 		if (*s1 != *s2)
 			return (*s1 > *s2 ? 1 : 0);
 		*s1 != '\0' ? s1++ : 0;

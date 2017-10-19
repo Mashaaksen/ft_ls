@@ -42,6 +42,9 @@ void	new_ls(t_ls **ls)
 	(*ls)->keys.count = 0;
 	(*ls)->keys.file = 0;
 	(*ls)->keys.key_one = 0;
+	(*ls)->keys.key_group = 0;
+	(*ls)->keys.key_without_sort = 0;
+	(*ls)->keys.key_use_atime = 0;
 }
 
 void	find_keys(t_ls *ls, char ***av)
@@ -53,10 +56,10 @@ void	find_keys(t_ls *ls, char ***av)
 		while (***av)
 		{
 			if (***av != 'l' && ***av != 'R' && ***av != 'a' &&
-***av != 'r' && ***av != 't' && ***av != '1')
+***av != 'r' && ***av != 't' && ***av != '1' && ***av != 'g' && ***av != 'G' && ***av != 'u' && ***av != 'f')
 			{
 				ft_printf("ft_ls: illegal option -- %c\nusage:"
-"ft_ls [-lraRt1] [file ...]\n", ***av);
+"ft_ls [-lraRtgGuf1] [file ...]\n", ***av);
 				exit(0);
 			}
 			if (***av == 'l')
@@ -64,6 +67,18 @@ void	find_keys(t_ls *ls, char ***av)
 				ls->keys.key_list = 1;
 				ls->keys.key_one ? ls->keys.key_one = 0 : 0;
 			}
+			if (***av == 'g')
+			{
+				ls->keys.key_group = 1;
+				!ls->keys.key_list ? ls->keys.key_list = 1 : 0;
+			}
+			***av == 'u' ? ls->keys.key_use_atime = 1 : 0;
+			if (***av == 'f')
+			{
+				ls->keys.key_without_sort = 1;
+				!ls->keys.key_all ? ls->keys.key_all = 1 : 0;
+			}
+			***av == 'G' ? ls->keys.key_color = 1 : 0;
 			***av == 'r' ? ls->keys.key_rev = 1 : 0;
 			***av == 'R' ? ls->keys.key_recurs = 1 : 0;
 			***av == 'a' ? ls->keys.key_all = 1 : 0;

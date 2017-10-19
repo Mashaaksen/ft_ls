@@ -7,6 +7,7 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/acl.h>
 # include <pwd.h>
 # include <uuid/uuid.h>
 # include <grp.h>
@@ -38,6 +39,7 @@ typedef struct			s_char_list
 
 typedef struct		s_time
 {
+	int 			month_now;
 	int 			year;
 	char 			*str_month;
 	int				day;
@@ -50,6 +52,10 @@ typedef struct		s_time
 typedef struct 		s_key
 {
 	int 			key_all;
+	int 			key_group;
+	int 			key_without_sort;
+	int 			key_use_atime;
+	int 			key_color;
 	int 			key_list;
 	int 			key_recurs;
 	int 			key_rev;
@@ -64,6 +70,7 @@ typedef struct 		s_key
 	int				max_link;
 	int				max_name_gr;
 	int				max_name_pw;
+	int 			max_len_mode;
 	int 			max_len_name;
 	int 			max_len_name_dot;
 	int 			print_col;
@@ -106,10 +113,10 @@ void 		add_and_sort(t_key keys, t_path **path, t_path *tmp);
 int			alpha(char *a, char *b);
 int 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key);
 int			ft_time(t_time a, t_time b, char *path, char *tmp);
-void		ft_find_time(t_time *tmp, struct stat buff);
+void		ft_find_time(t_time *tmp, struct stat buff, t_key key);
 void 		add_list(t_path *path, t_key *keys, t_char_list **list, t_char_list *tmp);
 void		print_tipe(mode_t mode, char *str);
-void		print_mode(mode_t mode, char **str);
+void		print_mode(mode_t mode, char **str, char *path);
 void 		print_file(t_path *path,t_key keys);
 void		full_tmp(t_path **tmp, char *av, char *road, char *file);
 t_char_list *get_list(t_path *path, t_key *keys, int i, t_char_list *tmp);

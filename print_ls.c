@@ -32,8 +32,15 @@ void		print_tipe(mode_t mode, char *str)
 		*str = '*';
 }
 
-void		print_mode(mode_t mode, char **str)
+void		print_mode(mode_t mode, char **str, char *path)
 {
+	ssize_t k;
+	char 	*line;
+	acl_t acl = NULL;
+	acl_entry_t dummy;
+
+	k = 0;
+	line = NULL;
 	*str = "";
 	*str = ft_strjoin(*str, ((mode & S_IRUSR) ? "r" : "-"));
 	*str = ft_strjoin(*str, ((mode & S_IWUSR) ? "w" : "-"));
@@ -49,6 +56,17 @@ void		print_mode(mode_t mode, char **str)
 		*str = ft_strjoin(*str, "x");
 	else
 		*str = ft_strjoin(*str, "-");
+	k = listxattr(path, line, 0, XATTR_NOFOLLOW);
+	acl = acl_get_link_np(path, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1) {
+		acl_free(acl);
+		acl = NULL;
+	}
+	if (k > 0)
+		*str = ft_strjoin(*str, "@");
+	else if (acl != NULL)
+		*str = ft_strjoin(*str, "+");
+
 }
 
 void		print_file(t_path *path, t_key keys)
