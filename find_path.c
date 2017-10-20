@@ -28,17 +28,16 @@ void		create_2_args(char *av, char **road, char **file)
 	}
 }
 
-void		full_tmp(t_path **tmp, char *av, char *road, char *file)
+void 		new_tmp(t_path **p, char *road)
 {
-	*tmp = (t_path *)malloc(sizeof(t_path));
-	(*tmp)->av = av;
-	(*tmp)->road = road;
-	(*tmp)->type = 'd';
-	(*tmp)->file = file;
-	(*tmp)->next = NULL;
+	(*p) = (t_path *)malloc(sizeof(t_path));
+	(*p)->av = road;
+	(*p)->road = road;
+	(*p)->file = NULL;
+	(*p)->next = NULL;
 }
 
-int			check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key)
+int			check_right_path(char *av, t_dir *inform, t_path **tmp, t_key key)
 {
 	char	*road;
 	char	*file;
@@ -51,17 +50,15 @@ int			check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key)
 		while (file && *file && (inform->entry = readdir(inform->dir)))
 			if (!ft_strcmp(inform->entry->d_name, file))
 			{
-				full_tmp(tmp, av, road, file);
-				lstat(av, &(*tmp)->buff);
-				key->count++;
-				if (key->key_time || key->key_list)
-					ft_find_time(&((*tmp)->time), (*tmp)->buff, *key);
-				!S_ISDIR((*tmp)->buff.st_mode) ? key->file = 1 : 0;
-				!S_ISDIR((*tmp)->buff.st_mode) ? (*tmp)->type = 'f' : 0;
+				create(tmp, &key, *inform, av);
 				break ;
 			}
-	(!file || !*file) ? full_tmp(tmp, av, road, file) : 0;
-	(!file || !*file) ? key->count++ : 0;
+	if (!file || !*file)
+	{
+		new_tmp(tmp, road);
+		stat_create(&key, tmp);
+		key.count++;
+	}
 	closedir(inform->dir);
 	return (*tmp ? 1 : 0);
 }
@@ -75,8 +72,6 @@ int			alpha(char *a, char *b)
 	s2 = b;
 	while (*s1 || *s2)
 	{
-//		if (*s2)
-//			return (1);
 		if (*s1 != *s2)
 			return (*s1 > *s2 ? 1 : 0);
 		*s1 != '\0' ? s1++ : 0;
@@ -88,20 +83,32 @@ int			alpha(char *a, char *b)
 void		find_path(t_ls *ls, char **av)
 {
 	t_path	*tmp;
+	int	i;
 
 	ls->path = NULL;
 	tmp = NULL;
 	if (!*av)
 	{
-		full_tmp(&tmp, "./", "./", NULL);
+		new_tmp(&tmp, "./");
+		stat_create(&ls->keys, &tmp);
+		i = (int)ft_strlen(tmp->av);
+		i > ls->keys.max_len_name ? ls->keys.max_len_name = i : 0;
+		if (tmp->type != 'd')
+			ls->keys.file++;
 		add_and_sort(ls->keys, &ls->path, tmp);
 		ls->keys.count++;
 	}
 	while (*av)
 	{
 		tmp = NULL;
-		if (check_right_path(*av, &ls->inform, &tmp, &ls->keys))
+		if (check_right_path(*av, &ls->inform, &tmp, ls->keys))
+		{
+			i = (int)ft_strlen(tmp->av);
+			i > ls->keys.max_len_name ? ls->keys.max_len_name = i : 0;
+			if (tmp->type != 'd')
+				ls->keys.file++;
 			add_and_sort(ls->keys, &ls->path, tmp);
+		}
 		else
 			ft_printf("ft_ls: %s: No such file or directory\n", *av);
 		av++;

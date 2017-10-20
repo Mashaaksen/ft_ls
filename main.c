@@ -81,7 +81,7 @@ int			main(int ac, char **av)
 	if (!ls.keys.key_one)
 	{
 		ioctl(0, TIOCGWINSZ, &win);
-//		win.ws_col = 181;
+		win.ws_col = 181;
 		ls.keys.ws_col = &win.ws_col;
 
 	}

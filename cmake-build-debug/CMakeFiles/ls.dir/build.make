@@ -225,6 +225,54 @@ CMakeFiles/ls.dir/print_ls.c.o.provides: CMakeFiles/ls.dir/print_ls.c.o.requires
 CMakeFiles/ls.dir/print_ls.c.o.provides.build: CMakeFiles/ls.dir/print_ls.c.o
 
 
+CMakeFiles/ls.dir/start.c.o: CMakeFiles/ls.dir/flags.make
+CMakeFiles/ls.dir/start.c.o: ../start.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ls.dir/start.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ls.dir/start.c.o   -c /nfs/2016/m/maksenov/CLionProjects/ls/start.c
+
+CMakeFiles/ls.dir/start.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ls.dir/start.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/m/maksenov/CLionProjects/ls/start.c > CMakeFiles/ls.dir/start.c.i
+
+CMakeFiles/ls.dir/start.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ls.dir/start.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/m/maksenov/CLionProjects/ls/start.c -o CMakeFiles/ls.dir/start.c.s
+
+CMakeFiles/ls.dir/start.c.o.requires:
+
+.PHONY : CMakeFiles/ls.dir/start.c.o.requires
+
+CMakeFiles/ls.dir/start.c.o.provides: CMakeFiles/ls.dir/start.c.o.requires
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.o.provides.build
+.PHONY : CMakeFiles/ls.dir/start.c.o.provides
+
+CMakeFiles/ls.dir/start.c.o.provides.build: CMakeFiles/ls.dir/start.c.o
+
+
+CMakeFiles/ls.dir/create_list_files.c.o: CMakeFiles/ls.dir/flags.make
+CMakeFiles/ls.dir/create_list_files.c.o: ../create_list_files.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ls.dir/create_list_files.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ls.dir/create_list_files.c.o   -c /nfs/2016/m/maksenov/CLionProjects/ls/create_list_files.c
+
+CMakeFiles/ls.dir/create_list_files.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ls.dir/create_list_files.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/m/maksenov/CLionProjects/ls/create_list_files.c > CMakeFiles/ls.dir/create_list_files.c.i
+
+CMakeFiles/ls.dir/create_list_files.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ls.dir/create_list_files.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/m/maksenov/CLionProjects/ls/create_list_files.c -o CMakeFiles/ls.dir/create_list_files.c.s
+
+CMakeFiles/ls.dir/create_list_files.c.o.requires:
+
+.PHONY : CMakeFiles/ls.dir/create_list_files.c.o.requires
+
+CMakeFiles/ls.dir/create_list_files.c.o.provides: CMakeFiles/ls.dir/create_list_files.c.o.requires
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.o.provides.build
+.PHONY : CMakeFiles/ls.dir/create_list_files.c.o.provides
+
+CMakeFiles/ls.dir/create_list_files.c.o.provides.build: CMakeFiles/ls.dir/create_list_files.c.o
+
+
 # Object files for target ls
 ls_OBJECTS = \
 "CMakeFiles/ls.dir/main.c.o" \
@@ -233,7 +281,9 @@ ls_OBJECTS = \
 "CMakeFiles/ls.dir/ft_ls.c.o" \
 "CMakeFiles/ls.dir/sort_ls.c.o" \
 "CMakeFiles/ls.dir/libft/ft_strndup.c.o" \
-"CMakeFiles/ls.dir/print_ls.c.o"
+"CMakeFiles/ls.dir/print_ls.c.o" \
+"CMakeFiles/ls.dir/start.c.o" \
+"CMakeFiles/ls.dir/create_list_files.c.o"
 
 # External object files for target ls
 ls_EXTERNAL_OBJECTS =
@@ -245,9 +295,11 @@ ls: CMakeFiles/ls.dir/ft_ls.c.o
 ls: CMakeFiles/ls.dir/sort_ls.c.o
 ls: CMakeFiles/ls.dir/libft/ft_strndup.c.o
 ls: CMakeFiles/ls.dir/print_ls.c.o
+ls: CMakeFiles/ls.dir/start.c.o
+ls: CMakeFiles/ls.dir/create_list_files.c.o
 ls: CMakeFiles/ls.dir/build.make
 ls: CMakeFiles/ls.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable ls"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable ls"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ls.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -262,6 +314,8 @@ CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/ft_ls.c.o.requires
 CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/sort_ls.c.o.requires
 CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/libft/ft_strndup.c.o.requires
 CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/print_ls.c.o.requires
+CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/start.c.o.requires
+CMakeFiles/ls.dir/requires: CMakeFiles/ls.dir/create_list_files.c.o.requires
 
 .PHONY : CMakeFiles/ls.dir/requires
 

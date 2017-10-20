@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/nfs/2016/m/maksenov/CLionProjects/ls/create_list_files.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/create_list_files.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/find_keys.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/find_keys.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/find_path.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/find_path.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/ft_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/ft_ls.c.o"
@@ -11,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/m/maksenov/CLionProjects/ls/main.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/main.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/print_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/print_ls.c.o"
   "/nfs/2016/m/maksenov/CLionProjects/ls/sort_ls.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/sort_ls.c.o"
+  "/nfs/2016/m/maksenov/CLionProjects/ls/start.c" "/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir/start.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

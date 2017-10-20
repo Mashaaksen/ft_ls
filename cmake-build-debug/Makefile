@@ -123,6 +123,33 @@ ls/fast:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/build
 .PHONY : ls/fast
 
+create_list_files.o: create_list_files.c.o
+
+.PHONY : create_list_files.o
+
+# target to build an object file
+create_list_files.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.o
+.PHONY : create_list_files.c.o
+
+create_list_files.i: create_list_files.c.i
+
+.PHONY : create_list_files.i
+
+# target to preprocess a source file
+create_list_files.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.i
+.PHONY : create_list_files.c.i
+
+create_list_files.s: create_list_files.c.s
+
+.PHONY : create_list_files.s
+
+# target to generate assembly for a file
+create_list_files.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.s
+.PHONY : create_list_files.c.s
+
 find_keys.o: find_keys.c.o
 
 .PHONY : find_keys.o
@@ -312,6 +339,33 @@ sort_ls.c.s:
 	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.s
 .PHONY : sort_ls.c.s
 
+start.o: start.c.o
+
+.PHONY : start.o
+
+# target to build an object file
+start.c.o:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.o
+.PHONY : start.c.o
+
+start.i: start.c.i
+
+.PHONY : start.i
+
+# target to preprocess a source file
+start.c.i:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.i
+.PHONY : start.c.i
+
+start.s: start.c.s
+
+.PHONY : start.s
+
+# target to generate assembly for a file
+start.c.s:
+	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.s
+.PHONY : start.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -321,6 +375,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ls"
+	@echo "... create_list_files.o"
+	@echo "... create_list_files.i"
+	@echo "... create_list_files.s"
 	@echo "... find_keys.o"
 	@echo "... find_keys.i"
 	@echo "... find_keys.s"
@@ -342,6 +399,9 @@ help:
 	@echo "... sort_ls.o"
 	@echo "... sort_ls.i"
 	@echo "... sort_ls.s"
+	@echo "... start.o"
+	@echo "... start.i"
+	@echo "... start.s"
 .PHONY : help
 
 

@@ -111,19 +111,22 @@ void		find_path(t_ls *ls, char **av);
 void 		ft_ls(t_path *path, t_key keys, int flag, t_path *tmp);
 void 		add_and_sort(t_key keys, t_path **path, t_path *tmp);
 int			alpha(char *a, char *b);
-int 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key *key);
+int 		check_right_path(char *av, t_dir *inform, t_path **tmp, t_key key);
 int			ft_time(t_time a, t_time b, char *path, char *tmp);
 void		ft_find_time(t_time *tmp, struct stat buff, t_key key);
 void 		add_list(t_path *path, t_key *keys, t_char_list **list, t_char_list *tmp);
 void		print_tipe(mode_t mode, char *str);
 void		print_mode(mode_t mode, char **str, char *path);
 void 		print_file(t_path *path,t_key keys);
-void		full_tmp(t_path **tmp, char *av, char *road, char *file);
 t_char_list *get_list(t_path *path, t_key *keys, int i, t_char_list *tmp);
 void add_terget(const t_path *path, t_char_list **tmp);
 void	new_ls(t_ls **ls);
 void		forward_alpha(t_path **path, t_path *tmp, t_path *head);
 void		back_alpha(t_path **path, t_path *tmp, t_path *head);
 void		print_list(t_key keys, t_path *path, int dir);
+int					read_all(t_path *path, t_path **tmp, t_key *key);
+void create(t_path **tmp, t_key *key, t_dir inform, char *road);
+void stat_create(t_key *key, t_path **p);
+
 
 #endif

@@ -45,6 +45,17 @@ void	new_ls(t_ls **ls)
 	(*ls)->keys.key_group = 0;
 	(*ls)->keys.key_without_sort = 0;
 	(*ls)->keys.key_use_atime = 0;
+	(*ls)->keys.total = 0;
+	(*ls)->keys.count_all = 0;
+	(*ls)->keys.count_without_dot = 0;
+	(*ls)->keys.max_link = 0;
+	(*ls)->keys.max_size = 0;
+	(*ls)->keys.max_name_gr = 0;
+	(*ls)->keys.max_name_pw = 0;
+	(*ls)->keys.max_name_pw = 0;
+	(*ls)->keys.max_len_mode = 0;
+	(*ls)->keys.max_len_name = 0;
+	(*ls)->keys.max_len_name_dot = 0;
 }
 
 void	find_keys(t_ls *ls, char ***av)
