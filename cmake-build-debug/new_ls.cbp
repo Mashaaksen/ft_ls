@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="ls"/>
+		<Option title="new_ls"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -44,8 +44,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/includes"/>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/libft"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
@@ -68,8 +66,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/includes"/>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/libft"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
@@ -86,22 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/find_keys.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/find_path.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/ft_ls.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/ft_ls.h">
-			<Option target="new_ls"/>
-		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/main.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/sort_ls.c">
 			<Option target="new_ls"/>
 		</Unit>
 		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/CMakeLists.txt">

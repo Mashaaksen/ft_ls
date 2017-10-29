@@ -12,10 +12,61 @@
 
 #include "ft_ls.h"
 
+int			alpha(char *a, char *b)
+{
+	char	*s1;
+	char	*s2;
+
+	s1 = a;
+	s2 = b;
+	while (*s1 || *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 > *s2 ? 1 : 0);
+		*s1 != '\0' ? s1++ : 0;
+		*s2 != '\0' ? s2++ : 0;
+	}
+	return (0);
+}
+
+int			ft_time(struct stat a, struct stat b, char *path, char *tmp)
+{
+	if (a.st_atimespec.tv_sec > b.st_atimespec.tv_sec)
+		return (1);
+	if (a.st_atimespec.tv_sec == b.st_atimespec.tv_sec)
+	{
+		if (a.st_atimespec.tv_nsec > b.st_atimespec.tv_nsec)
+			return (1);
+		if (a.st_atimespec.tv_nsec == b.st_atimespec.tv_nsec)
+			return (!alpha(path, tmp) ? 1 : 0);
+	}
+	return (0);
+}
+
+void	forward_alpha(t_path **path, t_path *tmp, t_path *head)
+{
+	head = *path;
+	while (*path && (*path)->next && !alpha((*path)->next->av, tmp->av))
+		*path = (*path)->next;
+	tmp->next = (*path)->next;
+	(*path)->next = tmp;
+	*path = head;
+}
+
+void	back_alpha(t_path **path, t_path *tmp, t_path *head)
+{
+	head = *path;
+	while (*path && (*path)->next && alpha((*path)->next->av, tmp->av))
+		*path = (*path)->next;
+	tmp->next = (*path)->next;
+	(*path)->next = tmp;
+	*path = head;
+}
+
 void		forward_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && ft_time((*path)->next->time, tmp->time, (*path)->next->av, tmp->av))
+	while (*path && (*path)->next && ft_time((*path)->next->buff, tmp->buff, (*path)->next->av, tmp->av))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;
@@ -25,21 +76,21 @@ void		forward_time(t_path **path, t_path *tmp, t_path *head)
 void		back_time(t_path **path, t_path *tmp, t_path *head)
 {
 	head = *path;
-	while (*path && (*path)->next && !ft_time((*path)->next->time, tmp->time, (*path)->next->av, tmp->av))
+	while (*path && (*path)->next && !ft_time((*path)->next->buff, tmp->buff, (*path)->next->av, tmp->av))
 		*path = (*path)->next;
 	tmp->next = (*path)->next;
 	(*path)->next = tmp;
 	*path = head;
 }
 
-void		time_sort(t_key keys, t_path **path, t_path *tmp)
+void		time_sort(t_key *keys, t_path **path, t_path *tmp)
 {
 	t_path	*head;
 
 	head = NULL;
-	if (keys.key_rev == 0)
+	if (keys->key_rev == 0)
 	{
-		if (ft_time(tmp->time, (*path)->time, (*path)->av, tmp->av))
+		if (ft_time(tmp->buff, (*path)->buff, (*path)->av, tmp->av))
 		{
 			tmp->next = *path;
 			*path = tmp;
@@ -49,7 +100,7 @@ void		time_sort(t_key keys, t_path **path, t_path *tmp)
 	}
 	else
 	{
-		if (!ft_time(tmp->time, (*path)->time, (*path)->av, tmp->av))
+		if (!ft_time(tmp->buff, (*path)->buff, (*path)->av, tmp->av))
 		{
 			tmp->next = *path;
 			*path = tmp;
@@ -59,12 +110,12 @@ void		time_sort(t_key keys, t_path **path, t_path *tmp)
 	}
 }
 
-void		alpha_sort(t_key keys, t_path **path, t_path *tmp)
+void		alpha_sort(t_key *keys, t_path **path, t_path *tmp)
 {
 	t_path	*head;
 
 	head = NULL;
-	if (keys.key_rev == 0)
+	if (keys->key_rev == 0)
 	{
 		if (alpha((*path)->av, tmp->av))
 		{
@@ -86,23 +137,23 @@ void		alpha_sort(t_key keys, t_path **path, t_path *tmp)
 	}
 }
 
-void		add_and_sort(t_key keys, t_path **path, t_path *tmp)
+void		add_and_sort(t_key *keys, t_path **path, t_path *tmp)
 {
-	t_path	*head;
+//	t_path	*head;
 
 	if (*path == NULL)
 		*path = tmp;
-	else if (keys.key_without_sort)
-	{
-		head = *path;
-		while ((*path)->next)
-			*path = (*path)->next;
-		(*path)->next = tmp;
-		*path = head;
-	}
+//	else if (keys.key_without_sort)
+//	{
+//		head = *path;
+//		while ((*path)->next)
+//			*path = (*path)->next;
+//		(*path)->next = tmp;
+//		*path = head;
+//	}
 	else
 	{
-		if (keys.key_time == 0)
+		if (keys->key_time == 0)
 			alpha_sort(keys, path, tmp);
 		else
 			time_sort(keys, path, tmp);

@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/ls
+CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/new_ls
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug
+CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ls
+# Target rules for targets named new_ls
 
 # Build rule for target.
-ls: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ls
-.PHONY : ls
+new_ls: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 new_ls
+.PHONY : new_ls
 
 # fast build rule for target.
-ls/fast:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/build
-.PHONY : ls/fast
-
-create_list_files.o: create_list_files.c.o
-
-.PHONY : create_list_files.o
-
-# target to build an object file
-create_list_files.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.o
-.PHONY : create_list_files.c.o
-
-create_list_files.i: create_list_files.c.i
-
-.PHONY : create_list_files.i
-
-# target to preprocess a source file
-create_list_files.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.i
-.PHONY : create_list_files.c.i
-
-create_list_files.s: create_list_files.c.s
-
-.PHONY : create_list_files.s
-
-# target to generate assembly for a file
-create_list_files.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/create_list_files.c.s
-.PHONY : create_list_files.c.s
+new_ls/fast:
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/build
+.PHONY : new_ls/fast
 
 find_keys.o: find_keys.c.o
 
@@ -156,7 +129,7 @@ find_keys.o: find_keys.c.o
 
 # target to build an object file
 find_keys.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.o
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_keys.c.o
 .PHONY : find_keys.c.o
 
 find_keys.i: find_keys.c.i
@@ -165,7 +138,7 @@ find_keys.i: find_keys.c.i
 
 # target to preprocess a source file
 find_keys.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.i
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_keys.c.i
 .PHONY : find_keys.c.i
 
 find_keys.s: find_keys.c.s
@@ -174,7 +147,7 @@ find_keys.s: find_keys.c.s
 
 # target to generate assembly for a file
 find_keys.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_keys.c.s
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_keys.c.s
 .PHONY : find_keys.c.s
 
 find_path.o: find_path.c.o
@@ -183,7 +156,7 @@ find_path.o: find_path.c.o
 
 # target to build an object file
 find_path.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.o
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_path.c.o
 .PHONY : find_path.c.o
 
 find_path.i: find_path.c.i
@@ -192,7 +165,7 @@ find_path.i: find_path.c.i
 
 # target to preprocess a source file
 find_path.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.i
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_path.c.i
 .PHONY : find_path.c.i
 
 find_path.s: find_path.c.s
@@ -201,7 +174,7 @@ find_path.s: find_path.c.s
 
 # target to generate assembly for a file
 find_path.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/find_path.c.s
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/find_path.c.s
 .PHONY : find_path.c.s
 
 ft_ls.o: ft_ls.c.o
@@ -210,7 +183,7 @@ ft_ls.o: ft_ls.c.o
 
 # target to build an object file
 ft_ls.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.o
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/ft_ls.c.o
 .PHONY : ft_ls.c.o
 
 ft_ls.i: ft_ls.c.i
@@ -219,7 +192,7 @@ ft_ls.i: ft_ls.c.i
 
 # target to preprocess a source file
 ft_ls.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.i
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/ft_ls.c.i
 .PHONY : ft_ls.c.i
 
 ft_ls.s: ft_ls.c.s
@@ -228,35 +201,8 @@ ft_ls.s: ft_ls.c.s
 
 # target to generate assembly for a file
 ft_ls.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/ft_ls.c.s
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/ft_ls.c.s
 .PHONY : ft_ls.c.s
-
-libft/ft_strndup.o: libft/ft_strndup.c.o
-
-.PHONY : libft/ft_strndup.o
-
-# target to build an object file
-libft/ft_strndup.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.o
-.PHONY : libft/ft_strndup.c.o
-
-libft/ft_strndup.i: libft/ft_strndup.c.i
-
-.PHONY : libft/ft_strndup.i
-
-# target to preprocess a source file
-libft/ft_strndup.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.i
-.PHONY : libft/ft_strndup.c.i
-
-libft/ft_strndup.s: libft/ft_strndup.c.s
-
-.PHONY : libft/ft_strndup.s
-
-# target to generate assembly for a file
-libft/ft_strndup.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/libft/ft_strndup.c.s
-.PHONY : libft/ft_strndup.c.s
 
 main.o: main.c.o
 
@@ -264,7 +210,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.o
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -273,7 +219,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.i
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -282,35 +228,8 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/main.c.s
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/main.c.s
 .PHONY : main.c.s
-
-print_ls.o: print_ls.c.o
-
-.PHONY : print_ls.o
-
-# target to build an object file
-print_ls.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.o
-.PHONY : print_ls.c.o
-
-print_ls.i: print_ls.c.i
-
-.PHONY : print_ls.i
-
-# target to preprocess a source file
-print_ls.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.i
-.PHONY : print_ls.c.i
-
-print_ls.s: print_ls.c.s
-
-.PHONY : print_ls.s
-
-# target to generate assembly for a file
-print_ls.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/print_ls.c.s
-.PHONY : print_ls.c.s
 
 sort_ls.o: sort_ls.c.o
 
@@ -318,7 +237,7 @@ sort_ls.o: sort_ls.c.o
 
 # target to build an object file
 sort_ls.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.o
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/sort_ls.c.o
 .PHONY : sort_ls.c.o
 
 sort_ls.i: sort_ls.c.i
@@ -327,7 +246,7 @@ sort_ls.i: sort_ls.c.i
 
 # target to preprocess a source file
 sort_ls.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.i
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/sort_ls.c.i
 .PHONY : sort_ls.c.i
 
 sort_ls.s: sort_ls.c.s
@@ -336,35 +255,8 @@ sort_ls.s: sort_ls.c.s
 
 # target to generate assembly for a file
 sort_ls.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/sort_ls.c.s
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/sort_ls.c.s
 .PHONY : sort_ls.c.s
-
-start.o: start.c.o
-
-.PHONY : start.o
-
-# target to build an object file
-start.c.o:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.o
-.PHONY : start.c.o
-
-start.i: start.c.i
-
-.PHONY : start.i
-
-# target to preprocess a source file
-start.c.i:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.i
-.PHONY : start.c.i
-
-start.s: start.c.s
-
-.PHONY : start.s
-
-# target to generate assembly for a file
-start.c.s:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/start.c.s
-.PHONY : start.c.s
 
 # Help Target
 help:
@@ -374,10 +266,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... ls"
-	@echo "... create_list_files.o"
-	@echo "... create_list_files.i"
-	@echo "... create_list_files.s"
+	@echo "... new_ls"
 	@echo "... find_keys.o"
 	@echo "... find_keys.i"
 	@echo "... find_keys.s"
@@ -387,21 +276,12 @@ help:
 	@echo "... ft_ls.o"
 	@echo "... ft_ls.i"
 	@echo "... ft_ls.s"
-	@echo "... libft/ft_strndup.o"
-	@echo "... libft/ft_strndup.i"
-	@echo "... libft/ft_strndup.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... print_ls.o"
-	@echo "... print_ls.i"
-	@echo "... print_ls.s"
 	@echo "... sort_ls.o"
 	@echo "... sort_ls.i"
 	@echo "... sort_ls.s"
-	@echo "... start.o"
-	@echo "... start.i"
-	@echo "... start.s"
 .PHONY : help
 
 

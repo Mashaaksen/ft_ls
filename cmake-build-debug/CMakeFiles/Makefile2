@@ -54,45 +54,45 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/ls
+CMAKE_SOURCE_DIR = /nfs/2016/m/maksenov/CLionProjects/new_ls
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug
+CMAKE_BINARY_DIR = /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/ls.dir
+# Target rules for target CMakeFiles/new_ls.dir
 
 # All Build rule for target.
-CMakeFiles/ls.dir/all:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/depend
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target ls"
-.PHONY : CMakeFiles/ls.dir/all
+CMakeFiles/new_ls.dir/all:
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/depend
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target new_ls"
+.PHONY : CMakeFiles/new_ls.dir/all
 
 # Include target in all.
-all: CMakeFiles/ls.dir/all
+all: CMakeFiles/new_ls.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/ls.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles 10
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ls.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/ls/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/ls.dir/rule
+CMakeFiles/new_ls.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/new_ls.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/new_ls.dir/rule
 
 # Convenience name for target.
-ls: CMakeFiles/ls.dir/rule
+new_ls: CMakeFiles/new_ls.dir/rule
 
-.PHONY : ls
-
-# clean rule for target.
-CMakeFiles/ls.dir/clean:
-	$(MAKE) -f CMakeFiles/ls.dir/build.make CMakeFiles/ls.dir/clean
-.PHONY : CMakeFiles/ls.dir/clean
+.PHONY : new_ls
 
 # clean rule for target.
-clean: CMakeFiles/ls.dir/clean
+CMakeFiles/new_ls.dir/clean:
+	$(MAKE) -f CMakeFiles/new_ls.dir/build.make CMakeFiles/new_ls.dir/clean
+.PHONY : CMakeFiles/new_ls.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/new_ls.dir/clean
 
 .PHONY : clean
 

@@ -12,78 +12,41 @@
 
 #include "ft_ls.h"
 
-int			ft_time(t_time a, t_time b, char *path, char *tmp)
-{
-	if (a.tv_sec > b.tv_sec)
-		return (1);
-	if (a.tv_sec == b.tv_sec)
-	{
-		if (a.nansec > b.nansec)
-			return (1);
-		if (a.nansec == b.nansec)
-			return (!alpha(path, tmp) ? 1 : 0);
-	}
-	return (0);
-}
-
-void		ft_find_time(t_time *tmp, struct stat buff, t_key key)
-{
-	char	*str_time;
-	char 	*now_time;
-	time_t timer;
-
-	tmp->month_now = 0;
-	timer = time(NULL);
-	str_time = ft_strdup(key.key_use_atime ? ctime(&buff.st_atimespec.tv_sec) : ctime(&buff.st_mtimespec.tv_sec));
-	now_time = ctime(&timer);
-	tmp->year = ft_atoi(ft_strrchr(str_time, ' '));
-	if (key.key_use_atime && !ft_strncmp((ft_strchr(now_time, ' ') + 1), (ft_strchr(str_time, ' ') + 1), 3) && tmp->year == ft_atoi(ft_strrchr(now_time, ' ')))
-		tmp->month_now = 1;
-	if (!key.key_use_atime && tmp->year == ft_atoi(ft_strrchr(now_time, ' ')))
-		tmp->year = 0;
-	tmp->str_month = ft_strndup(ft_strchr(str_time, ' ') + 1, 3);
-	tmp->day = ft_atoi(ft_strchr(ft_strchr(str_time, ' ') + 1, ' '));
-	tmp->hour = ft_atoi(ft_strchr(str_time, ':') - 2);
-	tmp->minute = ft_atoi(ft_strchr(str_time, ':') + 1);
-	tmp->nansec = (key.key_use_atime ? buff.st_atimespec.tv_nsec : buff.st_mtimespec.tv_nsec);
-	tmp->tv_sec = (key.key_use_atime ? buff.st_atimespec.tv_sec : buff.st_mtimespec.tv_sec);
-}
-
-void		add_terget(const t_path *path, t_char_list **tmp)
-{
-	ssize_t	k;
-	char	link_name[PATH_LEN];
-
-	k = readlink(path->av, link_name, PATH_LEN);
-	if (k >= PATH_LEN)
-		(*tmp)->target = ft_strdup("Wrong: link filename too long!");
-	else
-	{
-		if (k == -1)
-			(*tmp)->target = ft_strdup("invalid symbolic link!");
-		else
-		{
-			link_name[k] = '\0';
-			(*tmp)->target = ft_strdup(link_name);
-		}
-	}
-}
+//void		add_terget(const t_path *path, t_char_list **tmp)
+//{
+//	ssize_t	k;
+//	char	link_name[PATH_LEN];
+//
+//	k = readlink(path->av, link_name, PATH_LEN);
+//	if (k >= PATH_LEN)
+//		(*tmp)->target = ft_strdup("Wrong: link filename too long!");
+//	else
+//	{
+//		if (k == -1)
+//			(*tmp)->target = ft_strdup("invalid symbolic link!");
+//		else
+//		{
+//			link_name[k] = '\0';
+//			(*tmp)->target = ft_strdup(link_name);
+//		}
+//	}
+//}
 
 int			main(int ac, char **av)
 {
 	t_ls	ls;
-	struct winsize win;
+//	struct winsize win;
 
 	ac = 0;
 	av++;
 	find_keys(&ls, &av);
+//	if (!ls.keys.key_one)
+//	{
+//		ioctl(0, TIOCGWINSZ, &win);
+//		win.ws_col = 181;
+//		ls.keys.ws_col = &win.ws_col;
+//
+//	}
 	find_path(&ls, av);
-	if (!ls.keys.key_one)
-	{
-		ioctl(0, TIOCGWINSZ, &win);
-		win.ws_col = 181;
-		ls.keys.ws_col = &win.ws_col;
-
-	}
-	ft_ls(ls.path, ls.keys, 0, NULL);
+	ft_ls(ls.path, ls.keys, NULL);
 }
