@@ -43,7 +43,7 @@ int					read_all(t_path *path, t_path **tmp, t_key **key)
 	while ((inform.entry = readdir(inform.dir)))
 	{
 		p = NULL;
-		road = ft_strjoin(path->av, inform.entry->d_name);
+		road = ft_strjoin(ft_strjoin(path->av, "/"), inform.entry->d_name);
 		lstat(road, &buff);
 		create_path(buff, &p, road, key);
 		add_and_sort(*key, tmp, p);

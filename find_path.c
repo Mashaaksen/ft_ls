@@ -145,9 +145,11 @@ void 		create_path(struct stat buff, t_path **tmp, char *road, t_key **key)
 	char 			link_name[PATH_LEN + 1];
 
 	*tmp = (t_path *)malloc(sizeof(t_path));
-	(*tmp)->file = ((ft_strchr(road, '/') && (ft_strchr(road, '/') + 1)) ? ft_strdup(ft_strchr(road, '/') + 1) : NULL);
+	(*tmp)->file = ((ft_strrchr(road, '/') && (ft_strrchr(road, '/') + 1)) ? ft_strdup(ft_strrchr(road, '/') + 1) : NULL);
 	(*tmp)->av = road;
 	(*tmp)->buff = buff;
+	(*tmp)->uid = NULL;
+	(*tmp)->gid = NULL;
 	print_tipe(buff.st_mode, &(*tmp)->type);
 	if ((*key)->key_list)
 	{
