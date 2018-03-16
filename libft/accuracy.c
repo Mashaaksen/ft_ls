@@ -36,10 +36,8 @@ char		*accuracy_p(t_print *print, char *str, int ret)
 
 char		*accuracy_if(t_print *print, char *str, int ret)
 {
-	int		i;
 	char	*p;
 
-	i = 0;
 	if (print->type == 'p')
 		str = accuracy_p(print, str, ret);
 	else if (print->type == 's')

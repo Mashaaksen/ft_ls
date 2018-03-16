@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maksenov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/31 15:51:34 by maksenov          #+#    #+#             */
-/*   Updated: 2017/02/01 20:13:32 by maksenov         ###   ########.fr       */
+/*   Created: 2016/12/18 21:00:26 by maksenov          #+#    #+#             */
+/*   Updated: 2016/12/18 21:03:12 by maksenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_GET_NEXT_LINE_H
-# define GNL_GET_NEXT_LINE_H
-# define BUFF_SIZE 9
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <string.h>
+int		ft_count_words(char const *s, char c)
+{
+	char	*p;
+	int		cw;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	cw = 0;
+	if (!*s)
+		return (0);
+	while (*s)
+	{
+		while (*s == c && *s)
+			s++;
+		p = (char *)s;
+		while (*p != c && *p)
+			p++;
+		(*s != c && *s) ? cw++ : 0;
+		s = p;
+	}
+	return (cw);
+}

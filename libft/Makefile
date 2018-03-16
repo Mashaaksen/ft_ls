@@ -17,8 +17,6 @@ NAME = libft.a
 
 G = gcc
 
-FLAG = -Wall -Wextra -Werror
-
 SRC = ft_count_words.c \
 		ft_strndup.c \
 		ft_strstr.c \

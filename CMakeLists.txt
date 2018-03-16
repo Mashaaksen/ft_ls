@@ -1,13 +1,12 @@
-cmake_minimum_required(VERSION 3.7)
-project(ls)
-
-set(CMAKE_C_STANDARD 99)
+# cmake_minimum_required(VERSION <specify CMake version here>)
+project(ls C)
 
 include_directories(includes libft) # headers
 
 link_directories(libft) # libraries
 
-set(SOURCE_FILES main.c ft_ls.h find_path.c find_keys.c sort_ls.c ft_ls.c)
-add_executable(new_ls ${SOURCE_FILES})
+set(CMAKE_C_STANDARD 99)
 
-target_link_libraries(new_ls libft.a) # linkage
+add_executable(ls main.c ft_initialization.c ft_error.c ft_verification_param.c ft_insert_files.c ft_opendir.c)
+
+target_link_libraries(ls libft.a) # linkage

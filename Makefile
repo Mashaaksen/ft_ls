@@ -7,13 +7,12 @@ NAME = ft_ls
 
 G = gcc
 
-FLAG = -Wall -Wextra -Werror
-
 SRC =	main.c \
-		ft_ls.c \
-		find_keys.c \
-		find_path.c \
-		sort_ls.c
+        ft_initialization.c \
+        ft_error.c \
+        ft_verification_param.c \
+        ft_insert_files.c \
+        ft_opendir.c
 
 OBJ = $(SRC:.c=.o)
 

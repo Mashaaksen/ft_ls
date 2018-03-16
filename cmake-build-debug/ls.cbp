@@ -1,111 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="6"/>
-	<Project>
-		<Option title="ls"/>
-		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
-		<Build>
-			<Target title="all">
-				<Option working_dir="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="new_ls">
-				<Option output="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/new_ls" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/includes"/>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/libft"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 new_ls"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="new_ls/fast">
-				<Option output="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/new_ls" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/includes"/>
-					<Add directory="/nfs/2016/m/maksenov/CLionProjects/new_ls/libft"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 new_ls/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-		</Build>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/find_keys.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/find_path.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/ft_ls.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/ft_ls.h">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/main.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/sort_ls.c">
-			<Option target="new_ls"/>
-		</Unit>
-		<Unit filename="/nfs/2016/m/maksenov/CLionProjects/new_ls/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-	</Project>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="ls" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/pentagon/CLionProjects/ls/cmake-build-debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/pentagon/CLionProjects/ls/cmake-build-debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/pentagon/CLionProjects/ls/cmake-build-debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ls">
+         <Option output="/home/pentagon/CLionProjects/ls/cmake-build-debug/ls" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/pentagon/CLionProjects/ls/includes" />
+            <Add directory="/home/pentagon/CLionProjects/ls/libft" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/i386-linux-gnu" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ls" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="ls/fast">
+         <Option output="/home/pentagon/CLionProjects/ls/cmake-build-debug/ls" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/pentagon/CLionProjects/ls/includes" />
+            <Add directory="/home/pentagon/CLionProjects/ls/libft" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/i386-linux-gnu" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ls/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pentagon/CLionProjects/ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/pentagon/CLionProjects/ls/ft_error.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/ft_initialization.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/ft_insert_files.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/ft_opendir.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/ft_verification_param.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/main.c">
+      </Unit>
+      <Unit filename="/home/pentagon/CLionProjects/ls/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
 </CodeBlocks_project_file>

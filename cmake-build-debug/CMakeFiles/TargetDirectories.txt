@@ -1,3 +1,1 @@
-/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles/edit_cache.dir
-/nfs/2016/m/maksenov/CLionProjects/new_ls/cmake-build-debug/CMakeFiles/new_ls.dir
+/home/pentagon/CLionProjects/ls/cmake-build-debug/CMakeFiles/ls.dir

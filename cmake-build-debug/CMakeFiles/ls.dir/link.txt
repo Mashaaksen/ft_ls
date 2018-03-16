@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/ls.dir/main.o CMakeFiles/ls.dir/ft_initialization.o CMakeFiles/ls.dir/ft_error.o CMakeFiles/ls.dir/ft_verification_param.o CMakeFiles/ls.dir/ft_insert_files.o CMakeFiles/ls.dir/ft_opendir.o  -o ls  -Llibft -rdynamic -Wl,-Bstatic -lft -Wl,-Bdynamic -Wl,-rpath,libft 
