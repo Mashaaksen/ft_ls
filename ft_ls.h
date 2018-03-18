@@ -28,6 +28,8 @@ typedef	struct		s_keys
 
 typedef	struct		s_files
 {
+    char            *group;
+    char            *pwd;
     char            *file;
     char            *full_path;
     struct stat     buf;
@@ -45,6 +47,8 @@ typedef struct      s_serv
     DIR             *dir;
     struct dirent   *read;
     struct stat     buf;
+    struct group    *group;
+    struct passwd   *passwd;
 }                   t_serv;
 
 typedef int (*ft_compare_type)(t_files *curr_file, t_files *new_file);

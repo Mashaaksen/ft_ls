@@ -18,9 +18,9 @@ t_files *ft_opendir(t_files *files, t_keys keys, int *total)
     while ((serv.read = readdir(serv.dir)))
     {
         path = ft_strjoin(ft_strjoin(files->full_path, "/"), serv.read->d_name);
-        stat(path, &serv.buf);
+        lstat(path, &serv.buf);
         if (keys.list && *(serv.read->d_name) != '.')
-            *total = *total + serv.buf.st_blocks;
+            *total = *total + serv.buf.st_blocks;//неправильно считает total, больше в 2 раза!
         new_file = ft_initialize_files(new_file, serv.buf, serv.read->d_name, path, keys);
         free(path);
     }

@@ -4,7 +4,7 @@ void    ft_file_search(char *param, t_ls *ls)
 {
     int errnum;
     struct stat buf;
-    errnum = stat(param, &buf);
+    errnum = lstat(param, &buf);
     if (errnum != 0)
         perror(param);
     else
@@ -55,7 +55,7 @@ void    ft_verification_param(int ac, char **av, t_ls *ls)
     if (!ls->files)
     {
         struct stat buf;
-        stat(".", &buf);
-        ls->files = ft_initialize_files(ls->files, buf, "./", "./", ls->keys); //убрать слеш!!!!
+        lstat(".", &buf);
+        ls->files = ft_initialize_files(ls->files, buf, ".", ".", ls->keys);
     }
 }

@@ -38,6 +38,29 @@ void    ft_print_mode(t_files *file)
         ft_printf("-");
 }
 
+void   ft_print_time(struct stat buf)
+{
+    char *new_str;
+    char *curr_str;
+    char **arr;
+
+    curr_str = ctime(&buf.st_mtim.tv_sec);
+    arr = ft_strsplit(curr_str, ' ');
+    new_str = NULL;
+    new_str = ft_strjoin(ft_strjoin(arr[1], " "), ft_strjoin(arr[2], " "));
+    ft_printf(" %s %s ", arr[1], arr[2]);
+    //Больше равно полгода, вроде ещё на 3с сделать проверку.
+    //Странная дичь при выводе на экран.
+    ft_printf("%-5s ", ft_strsplit(arr[4], '\n')[0]);
+    if (time(NULL) - buf.st_mtim.tv_sec >= 15770000)//Возможно переделать метод определения.
+        ft_printf("%-5s", ft_strsplit(arr[4], '\n')[0]);
+    else
+    {
+        char **new_arr = ft_strsplit(arr[3], ':');
+        ft_printf("%02i:%02i ", ft_atoi(new_arr[1]), ft_atoi(new_arr[2]));
+    }
+}
+
 void    ft_print_file(t_files *file, t_keys keys)
 {
     if (!keys.list)
@@ -46,6 +69,9 @@ void    ft_print_file(t_files *file, t_keys keys)
     {
         ft_print_type(file);
         ft_print_mode(file);
+        ft_printf(" %d ", file->buf.st_nlink);//не забыть убрать пробелы, это выравнивание
+        ft_printf(" %s %s %d ", file->pwd, file->group, (int)file->buf.st_size);
+        ft_print_time(file->buf);
         ft_printf("%s\n", file->file);
     }
 }
@@ -77,14 +103,17 @@ void    ft_start_ls(t_files *files, t_keys keys)
     int     total;
 
     opens_folder = NULL;
-    if (!in_the_first_time++)
+    if (!in_the_first_time++)//Проблемы с выводом, как исправить?
         ft_print_only_file(files, keys);
     while (files)
     {
-        if (S_ISDIR(files->buf.st_mode) && ft_strcmp(files->file, ".") && ft_strcmp(files->file, "..") && (*(files->file) != '.' || !ft_strcmp(files->file, "./")))
+        if (S_ISDIR(files->buf.st_mode) && (*(files->file) != '.' ||
+                !ft_strcmp(files->full_path, ".") ||
+                !ft_strcmp(files->full_path, "..") || ft_strchr(files->full_path, '/')))
         {
             total = 0;
-            ft_printf("%s: \n", files->full_path);
+            if (in_the_first_time || keys.recursive)
+                ft_printf("%s: \n", files->full_path);
             opens_folder = ft_opendir(files, keys, &total);
             if (keys.list && total)
                 ft_printf("total %d\n", total);
