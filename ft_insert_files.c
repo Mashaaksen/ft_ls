@@ -14,26 +14,21 @@ char    *ft_tolower_all(char *str)//Мать твою, оформи функци
 
 int     ft_alpha_comp(t_files *curr_file, t_files *new_file)//АНАЛОГИЧНО!!!!!!!!!
 {
-    char *str1;
-    char *str2;
-
-    str1 = ft_tolower_all(curr_file->file);
-    str2 = ft_tolower_all(new_file->file);
-    if (ft_strcmp(str1, str2) < 0)
-        return (1);
-    return (0);
+	if (ft_strcmp(curr_file->file, new_file->file) < 0)
+		return (1);
+	return (0);
 }
 
 int     ft_time_comp(t_files *curr_file, t_files *new_file)
 {
-    if (curr_file->buf.st_mtim.tv_sec > new_file->buf.st_mtim.tv_sec)
+    if (curr_file->buf.st_mtimespec.tv_sec > new_file->buf.st_mtimespec.tv_sec)
         return (1);
-    if (curr_file->buf.st_mtim.tv_sec == new_file->buf.st_mtim.tv_sec)
+    if (curr_file->buf.st_mtimespec.tv_sec == new_file->buf.st_mtimespec.tv_sec)
     {
-        if (curr_file->buf.st_mtim.tv_nsec > new_file->buf.st_mtim.tv_nsec)
+        if (curr_file->buf.st_mtimespec.tv_nsec > new_file->buf.st_mtimespec.tv_nsec)
             return (1);
-        if (curr_file->buf.st_mtim.tv_nsec == new_file->buf.st_mtim.tv_nsec)
-            return (ft_alpha_comp(curr_file, new_file));
+        if (curr_file->buf.st_mtimespec.tv_nsec == new_file->buf.st_mtimespec.tv_nsec)
+            return (ft_alpha_comp(curr_file, new_file) ? 1 : 0);
     }
     return (0);
 }

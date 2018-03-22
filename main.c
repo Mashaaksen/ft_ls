@@ -44,20 +44,19 @@ void   ft_print_time(struct stat buf)
     char *curr_str;
     char **arr;
 
-    curr_str = ctime(&buf.st_mtim.tv_sec);
+    curr_str = ctime(&buf.st_mtimespec.tv_sec);
     arr = ft_strsplit(curr_str, ' ');
     new_str = NULL;
     new_str = ft_strjoin(ft_strjoin(arr[1], " "), ft_strjoin(arr[2], " "));
-    ft_printf(" %s %s ", arr[1], arr[2]);
+    ft_printf(" %s %2s ", arr[1], arr[2]);
     //Больше равно полгода, вроде ещё на 3с сделать проверку.
     //Странная дичь при выводе на экран.
-    ft_printf("%-5s ", ft_strsplit(arr[4], '\n')[0]);
-    if (time(NULL) - buf.st_mtim.tv_sec >= 15770000)//Возможно переделать метод определения.
-        ft_printf("%-5s", ft_strsplit(arr[4], '\n')[0]);
+    if (time(NULL) - buf.st_mtimespec.tv_sec >= 15770000)//Возможно переделать метод определения.
+        ft_printf("%5s ", ft_strsplit(arr[4], '\n')[0]);
     else
     {
         char **new_arr = ft_strsplit(arr[3], ':');
-        ft_printf("%02i:%02i ", ft_atoi(new_arr[1]), ft_atoi(new_arr[2]));
+        ft_printf("%02i:%02i ", ft_atoi(new_arr[0]), ft_atoi(new_arr[1]));
     }
 }
 
@@ -69,10 +68,13 @@ void    ft_print_file(t_files *file, t_keys keys)
     {
         ft_print_type(file);
         ft_print_mode(file);
-        ft_printf(" %d ", file->buf.st_nlink);//не забыть убрать пробелы, это выравнивание
-        ft_printf(" %s %s %d ", file->pwd, file->group, (int)file->buf.st_size);
+        ft_printf(" %*d", keys.length_link, file->buf.st_nlink);//не забыть убрать пробелы, это выравнивание
+        ft_printf(" %-*s %-*s %*d ", keys.length_pwd, file->pwd, keys.length_group, file->group, keys.length_size, (int)file->buf.st_size);
         ft_print_time(file->buf);
-        ft_printf("%s\n", file->file);
+        ft_printf("%s", file->file);
+	    if (file->target)
+		    ft_printf(" -> %s", file->target);
+	    ft_printf("\n");
     }
 }
 
@@ -80,7 +82,7 @@ void    ft_print_list(t_files *files, t_keys keys)
 {
     while (files)
     {
-        if (*(files->file) != '.')
+        if (*(files->file) != '.' || keys.all || (ft_strrchr(files->file, '/') && *(ft_strrchr(files->file, '/') + 1) != '.'))
             ft_print_file(files, keys);
         files = files->next;
     }
@@ -107,19 +109,18 @@ void    ft_start_ls(t_files *files, t_keys keys)
         ft_print_only_file(files, keys);
     while (files)
     {
-        if (S_ISDIR(files->buf.st_mode) && (*(files->file) != '.' ||
-                !ft_strcmp(files->full_path, ".") ||
-                !ft_strcmp(files->full_path, "..") || ft_strchr(files->full_path, '/')))
+        if (S_ISDIR(files->buf.st_mode) && (*files->file != '.' || (keys.all && ((ft_strcmp(files->file, ".") && ft_strcmp(files->file, "..")) || !ft_strcmp(files->full_path, files->file))) || !ft_strcmp(files->full_path, files->file)))
         {
-            total = 0;
+            total = -1;
             if (in_the_first_time || keys.recursive)
                 ft_printf("%s: \n", files->full_path);
-            opens_folder = ft_opendir(files, keys, &total);
-            if (keys.list && total)
+            opens_folder = ft_opendir(files, &keys, &total);
+            if (keys.list && total > -1)
                 ft_printf("total %d\n", total);
             ft_print_list(opens_folder, keys);
+	        ft_initialize_length(&keys);
             if (keys.recursive && opens_folder)
-                ft_start_ls(opens_folder, keys);
+	            ft_start_ls(opens_folder, keys);
         }
         files = files->next;
     }

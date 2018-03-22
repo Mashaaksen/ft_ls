@@ -16,6 +16,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <stdio.h>
+#include <errno.h>
 
 typedef	struct		s_keys
 {
@@ -24,6 +25,10 @@ typedef	struct		s_keys
     char            all;
     char            revers;
     char            time;
+	size_t             length_pwd;
+	size_t             length_group;
+	size_t             length_link;
+	size_t             length_size;
 }					t_keys;
 
 typedef	struct		s_files
@@ -32,6 +37,7 @@ typedef	struct		s_files
     char            *pwd;
     char            *file;
     char            *full_path;
+	char            *target;
     struct stat     buf;
     struct s_files  *next;
 }					t_files;
@@ -56,9 +62,9 @@ typedef int (*ft_compare_type)(t_files *curr_file, t_files *new_file);
 void    ft_verification_param(int ac, char **av, t_ls *ls);
 void    ft_initialize_ls(t_ls *ls);
 void    ft_error(char *str);
-t_files *    ft_initialize_files(t_files *files, struct stat buf, char *name_filee, char *full_path, t_keys keys);
+t_files *    ft_initialize_files(t_files *files, struct stat buf, char *name_filee, char *full_path, t_keys *keys);
 t_files *    ft_insert_files(t_files *files, t_files *new_files, t_keys keys);
-t_files *ft_opendir(t_files *files, t_keys keys, int *total);
-
+t_files *ft_opendir(t_files *files, t_keys *keys, int *total);
+void    ft_initialize_length(t_keys *keys);
 
 #endif

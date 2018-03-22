@@ -8,9 +8,7 @@ void    ft_file_search(char *param, t_ls *ls)
     if (errnum != 0)
         perror(param);
     else
-        ls->files = ft_initialize_files(ls->files, buf, param, NULL, ls->keys);
-
-
+	    ls->files = ft_initialize_files(ls->files, buf, param, NULL, &ls->keys);
 }
 
 void    ft_keys_search(char *param, t_ls *ls)
@@ -42,20 +40,25 @@ void    ft_keys_search(char *param, t_ls *ls)
 void    ft_verification_param(int ac, char **av, t_ls *ls)
 {
     int iter;
-
+	int count;
+	
+	count = 0;
     iter = 1;
     while (iter < ac)
     {
         if (*(av[iter]) == '-' && ft_strlen(av[iter]) > 1)
             ft_keys_search(av[iter], ls);
         else
-            ft_file_search(av[iter], ls);
+        {
+	        count++;
+	        ft_file_search(av[iter], ls);
+        }
         iter++;
     }
-    if (!ls->files)
+    if (!ls->files && !count)
     {
         struct stat buf;
         lstat(".", &buf);
-        ls->files = ft_initialize_files(ls->files, buf, ".", ".", ls->keys);
+        ls->files = ft_initialize_files(ls->files, buf, ".", ".", &ls->keys);
     }
 }

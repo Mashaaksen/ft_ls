@@ -1,26 +1,4 @@
-/home/pentagon/cmake-3.2.2/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/pentagon/CLionProjects/ls
-CMake Warning (dev) at CMakeLists.txt:6 (link_directories):
-  This command specifies the relative path
-
-    libft
-
-  as a link directory.
-
-  Policy CMP0015 is not set: link_directories() treats paths relative to the
-  source dir.  Run "cmake --help-policy CMP0015" for policy details.  Use the
-  cmake_policy command to set the policy and suppress this warning.
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
-CMake Warning (dev) in CMakeLists.txt:
-  No cmake_minimum_required command is present.  A line of code such as
-
-    cmake_minimum_required(VERSION 3.2)
-
-  should be added at the top of the file.  The version specified may be lower
-  if you wish to support older CMake versions for this project.  For more
-  information run "cmake --help-policy CMP0000".
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/maksenov/CLionProjects/ft_ls
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/pentagon/CLionProjects/ls/cmake-build-debug
+-- Build files have been written to: /Users/maksenov/CLionProjects/ft_ls/cmake-build-debug

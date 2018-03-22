@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ft_ls"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ft_ls">
+				<Option output="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/ft_ls" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/maksenov/CLionProjects/ft_ls/includes"/>
+					<Add directory="/Users/maksenov/CLionProjects/ft_ls/libft"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_ls"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ft_ls/fast">
+				<Option output="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/ft_ls" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/maksenov/CLionProjects/ft_ls/includes"/>
+					<Add directory="/Users/maksenov/CLionProjects/ft_ls/libft"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_ls/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/maksenov/CLionProjects/ft_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_error.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_initialization.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_insert_files.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_opendir.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_verification_param.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/main.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

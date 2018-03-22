@@ -129,5 +129,6 @@ int					ft_len_int(long long n);
 char				*ft_wchar(wchar_t *str, t_print *print);
 t_print				*my_print(t_print *print, char *str);
 char				*ft_strndup(char *sorc, size_t n);
+int			size_v(unsigned long long value, int base);
 
 #endif

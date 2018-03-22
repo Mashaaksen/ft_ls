@@ -15,6 +15,7 @@
 # define BUFF_SIZE 9
 
 # include <unistd.h>
+# include <zconf.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
