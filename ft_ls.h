@@ -72,5 +72,6 @@ t_files *    ft_insert_files(t_files *files, t_files *new_files, t_keys keys);
 t_files *ft_opendir(t_files *files, t_keys *keys, int *total);
 void    ft_initialize_length(t_keys *keys);
 void            ft_free_t_files(t_files **files);
+void	ft_error_keys(char c);
 
 #endif

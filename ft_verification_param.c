@@ -16,10 +16,15 @@ void			ft_file_search(char *param, t_ls *ls)
 {
 	int			errnum;
 	struct stat	buf;
+	char		*temp;
 
 	errnum = lstat(param, &buf);
 	if (errnum != 0)
-		perror(param);
+	{
+		temp = ft_strjoin("ft_ls: ", param);
+		perror(temp);
+		free(temp);
+	}
 	else
 		ls->files = ft_initialize_files(ls->files, buf, param, NULL, &ls->keys);
 }
@@ -47,7 +52,7 @@ void			ft_keys_search(char *param, t_ls *ls)
 			iter++;
 		}
 		else
-			ft_error(ft_strjoin("Error keys", ""));
+			ft_error_keys(param[iter]);
 	}
 }
 

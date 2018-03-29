@@ -22,7 +22,12 @@ t_files		*ft_opendir(t_files *files, t_keys *keys, int *total)
 
 	new_file = NULL;
 	serv.dir = opendir(files->full_path);
-	!serv.dir ? perror(ft_strjoin("ft_ls: ", files->file)) : 0;
+	if (!serv.dir)
+	{
+		temp = ft_strjoin("ft_ls: ", files->file);
+		perror(temp);
+		free(temp);
+	}
 	if (serv.dir)
 	{
 		while ((serv.read = readdir(serv.dir)))
@@ -36,8 +41,13 @@ t_files		*ft_opendir(t_files *files, t_keys *keys, int *total)
 			else
 				path = ft_strjoin(files->full_path, serv.read->d_name);
 			errnum = lstat(path, &serv.buf);
-			errnum ? perror(ft_strjoin("ft_ls: ", serv.read->d_name)) : 0;
-			if (!errnum)
+			if (errnum)
+			{
+				temp = ft_strjoin("ft_ls: ", serv.read->d_name);
+				perror(temp);
+				free(temp);
+			}
+			else if (!errnum)
 			{
 				*total == -1 ? *total = 0 : 0;
 				if ((keys->flags & mask_l) && (*serv.read->d_name != '.' || (keys->flags & mask_a)))

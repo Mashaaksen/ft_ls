@@ -32,50 +32,82 @@ void			ft_print_type(t_files *file)
 		write(1, "*", 1);
 }
 
+void			ft_align_str_left(char *str, int align)
+{
+	write(1, str, ft_strlen(str));
+	while (align-- > 0)
+		write(1, " ", 1);
+}
+
+void			ft_align_str_right(char *str, int align)
+{
+	while (align-- > 0)
+		write(1, " ", 1);
+	write(1, str, ft_strlen(str));
+}
+
+void			ft_print_digit_align(unsigned long long value, int align)
+{
+	char		*str;
+
+	str = ft_itoa_base(value, '\0');
+	ft_align_str_right(str, align - ft_strlen(str));
+	free(str);
+}
+
 void			ft_print_time(struct stat buf)
 {
 	char        *temp;
 	char		*curr_str;
 
 	curr_str = ctime(&buf.st_mtimespec.tv_sec);
-//	arr = ft_strsplit(curr_str, ' ');
 	temp = ft_strndup(ft_strchr(curr_str, ' '), (ft_strchr(curr_str, ':') - ft_strchr(curr_str, ' ') - 2));
-	write(1, " ", 1);
 	write(1, temp, ft_strlen(temp));
-	// printf(" %s", temp);
 	free(temp);
 	if (time(NULL) - buf.st_mtimespec.tv_sec >= 15770000 || time(NULL) - buf.st_mtimespec.tv_sec <= 3)
 	{
 		temp = ft_strndup(ft_strrchr(curr_str, ' '), (ft_strchr(curr_str, '\n') - ft_strrchr(curr_str, ' ')));
-		write(1, temp, ft_strlen(temp));
-		write(1, " ", 1);
-		//printf("%s ", temp);
+		ft_align_str_left(temp, 1);
 	}
 	else
 	{
 		temp = ft_strndup(ft_strchr(curr_str, ':') - 2, (ft_strrchr(curr_str, ' ') - ft_strchr(curr_str, ':') - 1));
-		write(1, temp, ft_strlen(temp));
-		write(1, " ", 1);
-		//printf("%s ", temp);
+		ft_align_str_left(temp, 1);
 	}
 	free(temp);
 }
 
+void			ft_print_target(char *target)
+{
+	write(1, " -> ", 4);
+	write(1, target, ft_strlen(target));
+}
+
 void			ft_print_file(t_files *file, t_keys keys)
 {
+	char		*str;
+
+	str = NULL;
 	if (!(keys.flags & mask_l))
-		printf("%s\n", file->file);
+	{
+		write(1, file->file, ft_strlen(file->file));
+		write(1, "\n", 1);
+	}
 	else
 	{
 		ft_print_type(file);
-		printf("%-*s %*d", keys.length_permission, file->permission, keys.length_link, file->buf.st_nlink);
-		printf(" %-*s %-*s %*d ", keys.length_pwd, file->pwd,
-	keys.length_group, file->group, keys.length_size, (int)file->buf.st_size);
-		ft_print_time(file->buf); //из-за массива двумерного
-		printf("%s", file->file);
+		ft_align_str_left(file->permission, keys.length_permission - ft_strlen(file->permission));
+		ft_print_digit_align(file->buf.st_nlink, keys.length_link + 1);
+		write(1, " ", 1);
+		ft_align_str_left(file->pwd, keys.length_pwd - ft_strlen(file->pwd));
+		write(1, "  ", 2);
+		ft_align_str_left(file->group, keys.length_group - ft_strlen(file->group));
+		ft_print_digit_align((int)file->buf.st_size, keys.length_size + 2);
+		ft_print_time(file->buf);
+		write(1, file->file, ft_strlen(file->file));
 		if (file->target)
-			printf(" -> %s", file->target);
-		printf("\n");
+			ft_print_target(file->target);
+		write(1, "\n", 1);
 	}
 }
 
@@ -88,7 +120,9 @@ void			ft_print_list(t_files *files, t_keys keys, int total)
 		{
 			if (total != -1 && (keys.flags & mask_l))
 			{
-				printf("total %d\n", total);
+				write(1, "total ", 6);
+				ft_print_digit_align(total, 0);
+				write(1, "\n", 1);
 				total = -1;
 			}
 			ft_print_file(files, keys);
@@ -141,7 +175,11 @@ void			ft_start_ls(t_files *files, t_keys keys)
 		{
 			total = -1;
 			if (in_the_first_time++)
-				ft_printf("\n%s: \n", files->full_path);
+			{
+				write(1, "\n", 1);
+				write(1, files->full_path, ft_strlen(files->full_path));
+				write(1, ":\n", 2);
+			}
 			opens_folder = ft_opendir(files, &keys, &total);
 			ft_print_list(opens_folder, keys, total);
 			ft_initialize_length(&keys);
