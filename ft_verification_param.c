@@ -37,7 +37,7 @@ void			ft_keys_search(char *param, t_ls *ls)
 	while (param[iter])
 	{
 		if (param[iter] == 'l' || param[iter] == 'R' || param[iter] == 'a' ||
-			param[iter] == 'r' || param[iter] == 't')
+			param[iter] == 'r' || param[iter] == 't' || param[iter] == 'u' || param[iter] == 'g')
 		{
 			if (param[iter] == 'l')
 				ls->keys.flags |= mask_l;
@@ -49,6 +49,14 @@ void			ft_keys_search(char *param, t_ls *ls)
 				ls->keys.flags |= mask_r;
 			else if (param[iter] == 't')
 				ls->keys.flags |= mask_t;
+			else if (param[iter] == 'u')
+				ls->keys.flags |= mask_u;
+			else if (param[iter] == 'g')
+			{
+				if (!(ls->keys.flags & mask_l))
+					ls->keys.flags |= mask_l;
+				ls->keys.flags |= mask_g;
+			}
 			iter++;
 		}
 		else
@@ -65,7 +73,7 @@ void			ft_verification_param(int ac, char **av, t_ls *ls)
 	iter = 1;
 	while (iter < ac)
 	{
-		if (*(av[iter]) == '-' && ft_strlen(av[iter]) > 1)
+		if (*(av[iter]) == '-' && ft_strlen(av[iter]) > 1 && !count)
 			ft_keys_search(av[iter], ls);
 		else
 		{

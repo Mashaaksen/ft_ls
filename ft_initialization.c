@@ -18,7 +18,6 @@ void		ft_initialize_length(t_keys *keys)
 	keys->length_pwd = 0;
 	keys->length_link = 0;
 	keys->length_size = 0;
-	keys->length_permission = 0;
 }
 
 void		ft_initialize_ls(t_ls *ls)
@@ -55,7 +54,6 @@ void    ft_get_xattr(char **permissions, char *path)
 	acl_t acl;
 	acl_entry_t obj;
 	ssize_t xattr;
-	char    *temp;
 
 	acl = acl_get_link_np(path, ACL_TYPE_EXTENDED);
 	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &obj) == -1)
@@ -67,17 +65,11 @@ void    ft_get_xattr(char **permissions, char *path)
 	if (xattr < 0)
 		xattr = 0;
 	if (xattr > 0)
-	{
-		temp = *permissions;
-		*permissions = ft_strjoin(*permissions, "@");
-		free(temp);
-	}
+		(*permissions)[9] = '@';
 	else if (acl != NULL)
-	{
-		temp = *permissions;
-		*permissions = ft_strjoin(*permissions, "+");
-		free(temp);
-	}
+		(*permissions)[9] = '+';
+	else
+		(*permissions)[9] = ' ';
 	acl_free(acl);
 	acl = NULL;
 }
@@ -88,7 +80,7 @@ char        *ft_get_permission(struct stat buf, char *full_path)
 	int     i;
 	char    *base;
 
-	permission = ft_memalloc(sizeof(char) * 10);
+	permission = ft_memalloc(sizeof(char) * 11);
 	i = -1;
 	base = "xwrxwrxwr";
 	while (++i <= 8)
@@ -128,9 +120,6 @@ t_files		*ft_initialize_files(t_files *files, struct stat buf,
 		new_files->permission = ft_get_permission(buf, new_files->full_path);
 		new_files->group = ft_strdup(serv.group->gr_name);
 		new_files->pwd = ft_strdup(serv.passwd->pw_name);
-		len = ft_strlen(new_files->permission);
-		if (keys->length_permission < len)
-			keys->length_permission = len;
 		len = ft_strlen(new_files->pwd);
 		if (keys->length_pwd < len)
 			keys->length_pwd = len;

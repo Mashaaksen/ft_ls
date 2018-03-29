@@ -55,16 +55,18 @@ void			ft_print_digit_align(unsigned long long value, int align)
 	free(str);
 }
 
-void			ft_print_time(struct stat buf)
+void			ft_print_time(struct stat buf, t_keys keys)
 {
 	char        *temp;
 	char		*curr_str;
+	struct timespec			st_time;
 
-	curr_str = ctime(&buf.st_mtimespec.tv_sec);
+	st_time = (keys.flags & mask_u) ? buf.st_atimespec : buf.st_mtimespec;
+	curr_str = ctime(&st_time.tv_sec);
 	temp = ft_strndup(ft_strchr(curr_str, ' '), (ft_strchr(curr_str, ':') - ft_strchr(curr_str, ' ') - 2));
 	write(1, temp, ft_strlen(temp));
 	free(temp);
-	if (time(NULL) - buf.st_mtimespec.tv_sec >= 15770000 || time(NULL) - buf.st_mtimespec.tv_sec <= 3)
+	if (time(NULL) - st_time.tv_sec >= 15770000)
 	{
 		temp = ft_strndup(ft_strrchr(curr_str, ' '), (ft_strchr(curr_str, '\n') - ft_strrchr(curr_str, ' ')));
 		ft_align_str_left(temp, 1);
@@ -96,14 +98,17 @@ void			ft_print_file(t_files *file, t_keys keys)
 	else
 	{
 		ft_print_type(file);
-		ft_align_str_left(file->permission, keys.length_permission - ft_strlen(file->permission));
+		ft_align_str_left(file->permission, 0);
 		ft_print_digit_align(file->buf.st_nlink, keys.length_link + 1);
 		write(1, " ", 1);
-		ft_align_str_left(file->pwd, keys.length_pwd - ft_strlen(file->pwd));
-		write(1, "  ", 2);
+		if (!(keys.flags & mask_g))
+		{
+			ft_align_str_left(file->pwd, keys.length_pwd - ft_strlen(file->pwd));
+			write(1, "  ", 2);
+		}
 		ft_align_str_left(file->group, keys.length_group - ft_strlen(file->group));
 		ft_print_digit_align((int)file->buf.st_size, keys.length_size + 2);
-		ft_print_time(file->buf);
+		ft_print_time(file->buf, keys);
 		write(1, file->file, ft_strlen(file->file));
 		if (file->target)
 			ft_print_target(file->target);
@@ -131,12 +136,15 @@ void			ft_print_list(t_files *files, t_keys keys, int total)
 	}
 }
 
-void			ft_print_only_file(t_files *files, t_keys keys)
+void			ft_print_only_file(t_files *files, t_keys keys, int *first_time)
 {
 	while (files)
 	{
 		if (!S_ISDIR(files->buf.st_mode))
+		{
+			*first_time += 1;
 			ft_print_file(files, keys);
+		}
 		files = files->next;
 	}
 }
@@ -165,7 +173,7 @@ void			ft_start_ls(t_files *files, t_keys keys)
 
 	opens_folder = NULL;
 	if (!in_the_first_time)
-		ft_print_only_file(files, keys);
+		ft_print_only_file(files, keys, &in_the_first_time);
 	while (files)
 	{
 		if (S_ISDIR(files->buf.st_mode) && (*files->file != '.' || ((keys.flags & mask_a) &&

@@ -16,7 +16,7 @@ void	ft_error_keys(char c)
 {
 	write(1, "ft_ls: illegal option -- ", 25);
 	write(1, &c, 1);
-	write(1, "\nusage: ./ft_ls [-larRt] [file ...]\n", 36);
+	write(1, "\nusage: ./ft_ls [-larRtug] [file ...]\n", 36);
 	exit(2);
 }
 

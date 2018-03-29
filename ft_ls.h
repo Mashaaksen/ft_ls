@@ -8,6 +8,8 @@
 # define mask_a 4
 # define mask_R 8
 # define mask_t 16
+# define mask_u 32
+# define mask_g 64
 
 # include "libft/libft.h"
 # include <dirent.h>
@@ -32,7 +34,6 @@ typedef	struct		s_keys
 	size_t             length_group;
 	size_t             length_link;
 	size_t             length_size;
-	size_t          length_permission;
 }					t_keys;
 
 typedef	struct		s_files
@@ -62,7 +63,7 @@ typedef struct      s_serv
     struct passwd   *passwd;
 }                   t_serv;
 
-typedef int (*ft_compare_type)(t_files *curr_file, t_files *new_file);
+typedef int (*ft_compare_type)(t_files *curr_file, t_files *new_file, t_keys keys);
 
 void    ft_verification_param(int ac, char **av, t_ls *ls);
 void    ft_initialize_ls(t_ls *ls);
