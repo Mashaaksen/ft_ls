@@ -93,6 +93,9 @@
 		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_insert_files.c">
 			<Option target="ft_ls"/>
 		</Unit>
+		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_ls.h">
+			<Option target="ft_ls"/>
+		</Unit>
 		<Unit filename="/Users/maksenov/CLionProjects/ft_ls/ft_opendir.c">
 			<Option target="ft_ls"/>
 		</Unit>

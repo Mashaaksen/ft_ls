@@ -37,6 +37,7 @@ clean:
 		@echo "$$($(RED))  ft_ls: "DEL *.o"  $$($(END))"
 		@echo "$$($(RED))********************$$($(END))"
 	@rm -f *.o
+	@rm -f *~
 
 fclean: clean
 		@echo "$$($(RED))********************$$($(END))"

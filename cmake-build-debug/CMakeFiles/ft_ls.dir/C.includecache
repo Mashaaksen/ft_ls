@@ -47,6 +47,8 @@ stdio.h
 -
 errno.h
 -
+sys/acl.h
+-
 
 /Users/maksenov/CLionProjects/ft_ls/ft_opendir.c
 ft_ls.h

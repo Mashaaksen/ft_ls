@@ -3,6 +3,12 @@
 
 # define PATH_LEN 256
 
+# define mask_l 1
+# define mask_r 2
+# define mask_a 4
+# define mask_R 8
+# define mask_t 16
+
 # include "libft/libft.h"
 # include <dirent.h>
 # include <sys/stat.h>
@@ -12,23 +18,21 @@
 # include <sys/xattr.h>
 # include <time.h>
 # include <dirent.h>
-#include <fcntl.h>
-#include <sys/ioctl.h>
-#include <termios.h>
-#include <stdio.h>
-#include <errno.h>
+# include <fcntl.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+# include <stdio.h>
+# include <errno.h>
+# include <sys/acl.h>
 
 typedef	struct		s_keys
 {
-    char            list;
-    char            recursive;
-    char            all;
-    char            revers;
-    char            time;
+	int             flags;
 	size_t             length_pwd;
 	size_t             length_group;
 	size_t             length_link;
 	size_t             length_size;
+	size_t          length_permission;
 }					t_keys;
 
 typedef	struct		s_files
@@ -38,6 +42,7 @@ typedef	struct		s_files
     char            *file;
     char            *full_path;
 	char            *target;
+	char            *permission;
     struct stat     buf;
     struct s_files  *next;
 }					t_files;
@@ -66,5 +71,6 @@ t_files *    ft_initialize_files(t_files *files, struct stat buf, char *name_fil
 t_files *    ft_insert_files(t_files *files, t_files *new_files, t_keys keys);
 t_files *ft_opendir(t_files *files, t_keys *keys, int *total);
 void    ft_initialize_length(t_keys *keys);
+void            ft_free_t_files(t_files **files);
 
 #endif
